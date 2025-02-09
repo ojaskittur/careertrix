@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-&u4fxl_fh!=!o()22%@f_nh=k6j(w+f573t^1pgc+7+tjwfkfp
 SECRET_KEY = 'django-insecure-q)!eyxq6-5+3+!5&^yg+#)&v4%ix2jqjw+76gds^6&va)7446m'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = ['*']  # Or add specific allowed hosts
 SOCIALACCOUNT_LOGIN_ON_GET = True
 SITE_ID = 3
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'api.apps.ApiConfig',
     "django.contrib.sites",
     "allauth",
@@ -56,15 +57,21 @@ INSTALLED_APPS = [
 
 
 SOCIALACCOUNT_PROVIDERS = {
-    "google":{
-        "SCOPE":[
+    "google": {
+        "SCOPE": [
             "profile",
             "email"
         ],
-        "AUTH_PARAMS" : {"access_type":"online"}
+        "AUTH_PARAMS": {"access_type": "online"},
+        # Add these configured values from your Google OAuth credentials
+        "APP": {
+            "client_id": "your-client-id-here",
+            "secret": "your-secret-key-here",
+            "key": ""
+        }
     }
 }
-LOGIN_REDIRECT_URL = '/api/home/'  # Redirect to the home page
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -107,8 +114,12 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'careertrix',
+        'USER': 'vishnu',
+        'PASSWORD': 'vishnu',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -165,7 +176,14 @@ AUTHENTICATION_BACKENDS = (
     "allauth.account.auth_backends.AuthenticationBackend"
 )
 # settings.py
-LOGIN_URL = '/api/login/'  # Redirect to the login page
+LOGIN_URL = '/api/login/'
+LOGIN_REDIRECT_URL = '/api/home/'
+LOGOUT_REDIRECT_URL = '/api/login/'  # Redirect to the login page
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'none'  # Can be 'mandatory', 'optional', or 'none'
+ACCOUNT_AUTHENTICATION_METHOD = 'email'  # Can be 'username', 'email' or 'username_email'
+ACCOUNT_USERNAME_REQUIRED = False
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')

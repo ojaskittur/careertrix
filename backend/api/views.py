@@ -5,7 +5,6 @@ from django.contrib.auth import authenticate, login , logout
 from .models import CareerGoal,GeminiResonse
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import get_backends
 from django.contrib.auth import update_session_auth_hash
 from .gemini_api import get_gemini_response
 from .utils import extract_text_from_resume, extract_skills_from_text
@@ -16,6 +15,8 @@ def landing(request):
     if request.user.is_authenticated:
         return redirect('home')
     return render(request, 'landing.html')
+
+
 
 
 def signin(request):
@@ -31,8 +32,8 @@ def signin(request):
             user = authenticate(request, username=username, password=password)
 
             if user is not None:
-                backend = get_backends()[0].__class__.__name__
-                user.backend = f'django.contrib.auth.backends.{backend}'
+                # Set the backend before logging in
+                user.backend = 'django.contrib.auth.backends.ModelBackend'  # Set this as the backend
                 login(request, user)
                 return redirect('home')
             else:
@@ -60,8 +61,7 @@ def signin(request):
                     email=email
                 )
                 user.save()
-                backend = get_backends()[0].__class__.__name__
-                user.backend = f'django.contrib.auth.backends.{backend}'
+                user.backend = 'django.contrib.auth.backends.ModelBackend'  # Set this as the backend
                 login(request, user)
                 return redirect('registration')
 
