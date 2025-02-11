@@ -12,11 +12,10 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
 
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+load_dotenv(dotenv_path=BASE_DIR / ".env")
 SECRET_KEY = 'django-insecure-&u4fxl_fh!=!o()22%@f_nh=k6j(w+f573t^1pgc+7+tjwfkfp'
 
 
@@ -62,9 +61,17 @@ SOCIALACCOUNT_PROVIDERS = {
             "profile",
             "email"
         ],
-        "AUTH_PARAMS": {"access_type": "online"}
+        "AUTH_PARAMS": {"access_type": "online"},
+        "APP": {
+            "client_id": os.getenv("GOOGLE_CLIENT_ID", ""),
+            "secret": os.getenv("GOOGLE_SECRET", ""),
+            "key": os.getenv("GOOGLE_KEY", ""),
+        }
     }
 }
+
+print("GOOGLE_CLIENT_ID:", os.getenv("CLIENT_ID"))
+print("GOOGLE_SECRET:", os.getenv("SECRET"))
 
 
 MIDDLEWARE = [

@@ -1,7 +1,11 @@
 import os
 import google.generativeai as genai
+from pathlib import Path
+from dotenv import load_dotenv
+BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(dotenv_path=BASE_DIR / ".env")
 
-genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+genai.configure(api_key=os.getenv("GEMINI_API_KEY", ""))
 
 def get_gemini_response(input_text):
     generation_config = {
