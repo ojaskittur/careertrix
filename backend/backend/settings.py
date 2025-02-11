@@ -64,8 +64,8 @@ SOCIALACCOUNT_PROVIDERS = {
         ],
         "AUTH_PARAMS": {"access_type": "online"},
         "APP": {
-            "client_id": "your-client-id-here",
-            "secret": "your-secret-key-here",
+            "client_id": "",
+            "secret": "",
             "key": ""
         }
     }

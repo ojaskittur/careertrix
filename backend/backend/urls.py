@@ -11,9 +11,8 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
 ]
 
-# Serve static files correctly in both development and production
+
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 else:
-    # In production, static files are served by the web server, so this should work
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

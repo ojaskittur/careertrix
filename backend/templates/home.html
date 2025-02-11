@@ -14,6 +14,14 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
+    <style>
+  /* Container to align buttons side by side */
+  .roadmap-buttons-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem; /* Adds space between buttons */
+  }
+    </style>
   </head>
   <body>
     <header class="header" id="shell-bar">
@@ -88,13 +96,20 @@
     </div>
     <button id="generate-button" type="submit">Generate</button>
   </form>
-</section>
+  <br><br>
+  <h2>Previous Roadmaps Generated:</h2>
+  <br>
+  <div class="roadmap-buttons-container">
+    {% for response in previous_responses %}
+        <form method="POST" action="{% url 'home' %}">
+            {% csrf_token %}
+            <button type="submit" name="job-dropdown" value="{{ response.field }}" id="generate-button">
+                {{ response.field }}
+            </button>
+        </form>
+    {% endfor %}
+  </div>
 
-<section class="roadmap-section" id="roadmap-section" >
-  <h2>Roadmap</h2>
-  <div id="output-message" style="display:none;">Roadmap generated</div>
-<iframe id="output-iframe" style="display:none;"></iframe>
-<div id="roadmap-section" style="display:none;"></div>
 </section>
 
 <!-- Career Predictor Section -->

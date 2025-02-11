@@ -71,12 +71,15 @@ def signin(request):
 def home(request):
     username = request.user.username
 
+    # Retrieve previous GeminiResponse objects for the current user
+    previous_responses = GeminiResponse.objects.filter(user__username=username)
+
     if request.method == 'POST':
         job = request.POST.get('job-dropdown')
         
         try:
-            exist = GeminiResponse.objects.get(user__username=username,field = job)
-            gemini_response = exist.response  
+            exist = GeminiResponse.objects.get(user__username=username, field=job)
+            gemini_response = exist.response
             print(exist)
         except GeminiResponse.DoesNotExist:
             try:
@@ -104,11 +107,12 @@ def home(request):
             make sure not to include ``` at the starting or at the end"""
             gemini_response = get_gemini_response(input_text)
 
-            GeminiResponse.objects.create(user=request.user, response=gemini_response,field = job)
+            GeminiResponse.objects.create(user=request.user, response=gemini_response, field=job)
             print(gemini_response)
         return render(request, 'roadmap.html', {'gemini_response': gemini_response})
 
-    return render(request, 'home.html')
+    return render(request, 'home.html', {'previous_responses': previous_responses})
+
 
 @login_required
 def registration(request):

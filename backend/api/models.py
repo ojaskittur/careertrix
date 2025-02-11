@@ -27,7 +27,6 @@ class CareerGoal(models.Model):
     availability = models.CharField(max_length=10, choices=AVAILABILITY_CHOICES, null=True, blank=True)
 
     def user_directory_path(instance, filename):
-        # file will be uploaded to MEDIA_ROOT/resumes/username.pdf
         return f'resumes/{instance.user.username}.pdf'
 
     resume = models.FileField(upload_to=user_directory_path, null=True, blank=True)
