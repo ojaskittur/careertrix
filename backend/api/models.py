@@ -36,11 +36,11 @@ class CareerGoal(models.Model):
         return f"{self.user.username}'s Career Goals"
 
 
-class GeminiResonse(models.Model):
+class GeminiResponse(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, default="null")
     field = models.CharField(max_length=100, default="null")
-    response = models.CharField(max_length=755)
+    response = models.TextField()
 
     class Meta:
         unique_together = ('user', 'field')

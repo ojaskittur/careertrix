@@ -63,7 +63,6 @@ SOCIALACCOUNT_PROVIDERS = {
             "email"
         ],
         "AUTH_PARAMS": {"access_type": "online"},
-        # Add these configured values from your Google OAuth credentials
         "APP": {
             "client_id": "your-client-id-here",
             "secret": "your-secret-key-here",
@@ -178,11 +177,10 @@ AUTHENTICATION_BACKENDS = (
 # settings.py
 LOGIN_URL = '/api/login/'
 LOGIN_REDIRECT_URL = '/api/home/'
-LOGOUT_REDIRECT_URL = '/api/login/'  # Redirect to the login page
+LOGOUT_REDIRECT_URL = '/api/login/' 
 
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = 'none'  # Can be 'mandatory', 'optional', or 'none'
-ACCOUNT_AUTHENTICATION_METHOD = 'email'  # Can be 'username', 'email' or 'username_email'
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_USERNAME_REQUIRED = False
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'

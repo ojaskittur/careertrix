@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login , logout
-from .models import CareerGoal,GeminiResonse
+from .models import CareerGoal,GeminiResponse
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash
@@ -32,14 +32,13 @@ def signin(request):
             user = authenticate(request, username=username, password=password)
 
             if user is not None:
-                # Set the backend before logging in
-                user.backend = 'django.contrib.auth.backends.ModelBackend'  # Set this as the backend
+                user.backend = 'django.contrib.auth.backends.ModelBackend'  
                 login(request, user)
                 return redirect('home')
             else:
                 messages.error(request, "Username or password does not exist")
 
-        else:  # Handle new user signup
+        else: 
             username = request.POST.get('username')
             password = request.POST.get('password')
             confirm_password = request.POST.get('password2')
@@ -61,7 +60,7 @@ def signin(request):
                     email=email
                 )
                 user.save()
-                user.backend = 'django.contrib.auth.backends.ModelBackend'  # Set this as the backend
+                user.backend = 'django.contrib.auth.backends.ModelBackend'  
                 login(request, user)
                 return redirect('registration')
 
@@ -75,13 +74,11 @@ def home(request):
     if request.method == 'POST':
         job = request.POST.get('job-dropdown')
         
-        # Try to fetch existing GeminiResponse
         try:
-            exist = GeminiResonse.objects.get(user__username=username,field = job)
-            gemini_response = exist.response  # Assuming 'response' is the field storing the Gemini response
+            exist = GeminiResponse.objects.get(user__username=username,field = job)
+            gemini_response = exist.response  
             print(exist)
-        except GeminiResonse.DoesNotExist:
-            # If not found, create a new response
+        except GeminiResponse.DoesNotExist:
             try:
                 user_profile = CareerGoal.objects.get(user__username=username)
                 entered_skills = user_profile.technical_skills or ""
@@ -102,12 +99,13 @@ def home(request):
             user_profile.technical_skills = all_skills
             user_profile.save()
 
-            input_text = f"I have the skills: {all_skills} and i want the job {job}. give me a mark down of the required skills i am missing just give me the mark down alone like #for main branch and ## for second and ### for 3rd remember give me only markdown only #'s are allowed before every subtopic or topic"
+            input_text = f"""I have the skills: {all_skills} and i want the job {job}. 
+            give me a mark down of the required skills i am missing just give me the mark down alone like #for main branch and ## for second and ### for 3rd remember give me only markdown only '#' are allowed before every subtopic or topic.
+            make sure not to include ``` at the starting or at the end"""
             gemini_response = get_gemini_response(input_text)
 
-            # Save the new response to the database
-            GeminiResonse.objects.create(user=request.user, response=gemini_response,field = job)
-
+            GeminiResponse.objects.create(user=request.user, response=gemini_response,field = job)
+            print(gemini_response)
         return render(request, 'roadmap.html', {'gemini_response': gemini_response})
 
     return render(request, 'home.html')
