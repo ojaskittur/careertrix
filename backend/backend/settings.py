@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-q)!eyxq6-5+3+!5&^yg+#)&v4%ix2jqjw+76gds^6&va)7446m
 DEBUG = True
 ALLOWED_HOSTS = ['*']  # Or add specific allowed hosts
 SOCIALACCOUNT_LOGIN_ON_GET = True
-SITE_ID = 3
+SITE_ID = 4
 # Application definition
 
 
@@ -62,12 +62,7 @@ SOCIALACCOUNT_PROVIDERS = {
             "profile",
             "email"
         ],
-        "AUTH_PARAMS": {"access_type": "online"},
-        "APP": {
-            "client_id": "",
-            "secret": "",
-            "key": ""
-        }
+        "AUTH_PARAMS": {"access_type": "online"}
     }
 }
 
@@ -174,7 +169,7 @@ AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend"
 )
-# settings.py
+
 LOGIN_URL = '/api/login/'
 LOGIN_REDIRECT_URL = '/api/home/'
 LOGOUT_REDIRECT_URL = '/api/login/' 
