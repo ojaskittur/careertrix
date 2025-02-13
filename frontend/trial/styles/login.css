@@ -1,0 +1,630 @@
+:root {
+    --background-rgb: 2 6 23;
+    --background-light-rgb: 30 41 59;
+    --border-rgb: 255 255 255;
+    --border: 1px solid rgb(var(--border-rgb) / 20%);
+    --hyperplexed-main-rgb: 41 121 255;
+    --hyperplexed-main-light-rgb: 56 182 255;
+    --hyperplexed-secondary-rgb: 42 252 152;
+    --font-size: 0.7rem;
+  }
+  
+  body {
+    background: rgb(var(--background-rgb));
+    height: 100vh; /* Change to cover full viewport height */
+    width: 100vw; /* Change to cover full viewport width */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Center content vertically */
+    overflow: hidden;
+    font-family: 'Noto Sans', sans-serif;
+  }
+  
+  .card-track {
+    height: 100vh; /* Full height */
+    width: 100vw; /* Full width */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center content */
+    position: relative;
+    margin-top: 60px;
+    margin-bottom: 10px;
+  }
+  
+  .card-wrapper {
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    position: relative;
+  }
+  
+  .card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1;
+    position: relative;
+    margin: 0; /* Remove margin to fill space */
+    border-radius: 5rem;
+    overflow: hidden;
+    cursor: pointer;
+    height: 100%; /* Full height */
+    width: 100%; /* Full width */
+  }
+  
+  .card-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 4;
+    height: 580px;
+    width: 850px;
+  }
+
+  .card-gradient {
+    height: 100%; /* Full height */
+    width: 100%; /* Full width */
+    position: absolute;
+    background: radial-gradient(
+      rgb(var(--background-light-rgb)) 40%, 
+      rgb(var(--hyperplexed-main-rgb)) 50%, 
+      rgb(var(--hyperplexed-main-light-rgb)),
+      rgb(var(--hyperplexed-secondary-rgb))
+    );
+    mix-blend-mode: darken; 
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  .card-letters {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    color: white;
+    font-size: var(--font-size);
+    font-weight: 500;
+    word-wrap: break-word;
+    opacity: 1;
+    transition: opacity 4000ms;
+    -webkit-mask-image: radial-gradient( 
+      rgb(255 255 255) 20%, 
+      rgb(255 255 255 / 25%), 
+      transparent
+    );
+    scale: 3;
+  }
+  
+  .card:hover .card-letters {
+    opacity: 0.1;
+  }
+  
+  @media(max-width: 2.5px) {
+    :root {
+      --card-size: 200px;
+    }
+    
+    .card {
+      border-radius: 5rem;
+    }
+  }
+
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    color: #222831;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #222831;
+}
+
+.logo {
+    height: 30px;
+    width: 40px;
+    margin-right: 10px;
+    }
+
+.container {
+    position: relative;
+    width: 850px; /* Full container width */
+    height: 580px; /* Full container height */
+    display: flex; /* Flexbox for even distribution */
+    flex-direction: row;
+    overflow: hidden;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border: 2px solid #00ADB5; /* Border color */
+    box-shadow: 0 0 25px #00ADB5; /* Shadow color */
+    background-color: #222831;
+    box-shadow: 0 0 15px rgba(34, 40, 49, 0.5); /* Black shadow */
+    padding: 20px;
+    border-radius: 10px; /* Adjust if needed */
+  }
+/* Curved Shapes */
+.container .curved-shape {
+    position: absolute;
+    right: 0;
+    top: -5px;
+    height: 700px;
+    width: 950px;
+    background: linear-gradient(45deg, #222831, #00ADB5); /* Gradient colors */
+    transform: rotate(10deg) skewY(40deg);
+    transform-origin: bottom right;
+    transition: 1.0s ease;
+    transition-delay: 1.0s;
+}
+
+.container.active .curved-shape {
+    transform: rotate(0deg) skewY(0deg);
+    transition-delay: 0.5s;
+}
+
+.container .curved-shape2 {
+    position: absolute;
+    left: 250px;
+    top: 100%;
+    height: 700px;
+    width: 850px;
+    background: #222831; /* Background color */
+    border-top: 3px solid #00ADB5; /* Border color */
+    transform: rotate(0deg) skewY(0deg);
+    transform-origin: bottom left;
+    transition: 1.0s ease;
+    transition-delay: 0.4s;
+}
+
+.container.active .curved-shape2 {
+    transform: rotate(-11deg) skewY(-41deg);
+    transition-delay: 1.2s;
+}
+
+/* Form Boxes */
+.form-box {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.form-box.Login {
+    left: 0;
+    padding: 0 40px;
+}
+
+.form-box.Register {
+    right: 0;
+    padding: 0 60px;
+    transform: translateX(100%);
+    opacity: 0;
+    transition: transform 0.7s ease, opacity 0.7s ease;
+}
+/* Form Box Animation */
+.form-box.Login .animation {
+    transform: translateX(0%);
+    opacity: 1;
+    transition: transform 0.7s ease, opacity 0.7s ease;
+}
+
+.container.active .form-box.Login .animation {
+    transform: translateX(-100%);
+    opacity: 0;
+    transition-delay: 1.6s; /* Delay for when login content is exiting */
+}
+
+.container.active .form-box.Register {
+    transform: translateX(0%);
+    opacity: 1;
+    transition-delay: 1.2s; /* Match with shape transition delay */
+}
+/* Heading Styles */
+.form-box h2 {
+    font-size: 32px;
+    text-align: center;
+    color: #EEEEEE;
+}
+
+.form-box p {
+    color: #EEEEEE;
+}
+
+/* Input Styles */
+.input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin-top: 25px;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: #EEEEEE; /* Text color */
+    font-weight: 600;
+    border-bottom: 2px solid #EEEEEE; /* Input border color */
+    padding-right: 23px;
+    transition: 0.5s;
+}
+
+.input-box input:focus,
+.input-box input:valid {
+    border-bottom: 2px solid #00ADB5; /* Input focus border color */
+}
+
+.input-box label {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #EEEEEE; /* Label color */
+    transition: 0.5s;
+}
+
+.input-box input:focus ~ label,
+.input-box input:valid ~ label {
+    top: -5px;
+    color: #00ADB5; /* Label color on focus */
+}
+
+.input-box i {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    font-size: 18px;
+    transform: translateY(-50%);
+    transition: 0.5s;
+    color: #EEEEEE;
+}
+
+.input-box input:focus ~ i,
+.input-box input:valid ~ i {
+    color: #00ADB5; /* Icon color on focus */
+}
+
+/* Button Styles */
+.btn {
+    position: relative;
+    width: 100%;
+    height: 45px;
+    background: #00ADB5; /* Button background color */
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    color: #EEEEEE; /* Button text color */
+    text-align: center;
+    border: 2px solid #00ADB5; /* Button border color */
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn::before {
+    content: "";
+    position: absolute;
+    height: 300%;
+    width: 100%;
+    background: linear-gradient(#222831, #00ADB5, #222831, #00ADB5); /* Button gradient */
+    top: -100%;
+    left: 0;
+    z-index: -1;
+    transition: 0.5s;
+}
+
+.btn:hover::before {
+    top: 0;
+}
+
+.regi-link {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+.regi-link a {
+    text-decoration: none;
+    color: #00ADB5; /* Link color */
+    font-weight: 600;
+}
+
+.regi-link a:hover {
+    text-decoration: underline;
+}
+/* Info Content */
+.info-content {
+    position: absolute;
+    width: 50%; /* Half of the container width */
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Vertically center the image */
+    flex-direction: column;
+}
+
+.info-content.Login {
+    right: 0;
+    padding: 0 60px;
+    transform: translateX(0);
+    opacity: 1;
+    transition: transform 0.7s ease, opacity 0.7s ease;
+}
+
+.container.active .info-content.Login {
+    transform: translateX(100%);
+    opacity: 0;
+    transition-delay: 1.6s; /* Delay for when login content is exiting */
+}
+
+.info-content.Register {
+    display: flex;
+    left: 0;
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: transform 0.7s ease, opacity 0.7s ease;
+}
+
+.container.active .info-content.Register {
+    transform: translateX(0%);
+    opacity: 1;
+    transition-delay: 1.2s; /* Match with shape transition delay */
+}
+
+.info-content h2 {
+    font-size: 32px;
+    text-align: center;
+}
+
+.info-content p {
+    font-size: 16px;
+}
+
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background:linear-gradient(45deg, #222831, #00ADB5); /* Match the border/shadow color */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 100;
+    color: #EEEEEE;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+  
+  .back-button i {
+    margin-right: 5px;
+    font-size: 25px;
+    height: fit-content;
+    margin-top: 5px;
+  }
+  
+ .time-date {
+    text-align: right;
+    color: #EEEEEE !important; /* Updated text color */
+ }
+
+ .time-date p {
+    margin: 0;
+    color: #EEEEEE !important;
+ }
+
+ .time-date #time {
+    font-size: 18px; /* Time font size */
+ }
+
+ .time-date #date {
+    font-size: 14px; /* Date font size */
+    font-weight: 400;
+ }
+ .top-bar .time-date {
+    color: #EEEEEE !important; /* Force the text color */
+}
+
+#error-container {
+    display: none; /* Hidden initially */
+}
+  /* Back Button */
+.back-button {
+    color: #EEEEEE; /* Default text color */
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: #00ADB5; /* Default background color */
+    border: 2px solid #222831; /* Border matches accent color */
+    border-radius: 5px;
+    font-size: 18px;
+    transition: all 0.3s ease; /* Smooth transitions */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+  
+  .back-button:hover {
+    background-color: #ffffff; /* Background on hover */
+    color: #222831; /* Text color on hover */
+    transform: scale(1.05); /* Slight scale up on hover */
+  }
+
+  #error-container {
+    display: none; /* Hidden initially */
+    color: #FF4C4C; /* A red color that complements your theme */
+    font-size: 14px;
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: #393E46; /* A background color matching your site's palette */
+    border-radius: 4px;
+    position: absolute;
+    top: 60px; /* Adjust depending on your top bar height */
+    right: 20px;
+    z-index: 1000;
+    animation: fadeout 5s forwards; /* Disappears after 5 seconds */
+}
+
+@keyframes fadeout {
+    0% { opacity: 1; }
+    100% { opacity: 0; display: none; }
+}
+
+#error-message {
+    color: #FF0000; /* Error message color */
+}
+  
+  .form-box,
+.info-content {
+  width: 50%; /* Each takes up half the container */
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.info-content img {
+    width: 150%; /* Full width of the container */
+    height: auto; /* Full height of the container */
+    object-fit: fill; /* Ensures the image covers the container without distortion */
+    border-radius: 10px; /* Maintain rounded corners */
+}
+/* Remove .half-image class since it's redundant for the images here */
+.info-content.Login {
+    right: 0;
+    transform: translateX(0);
+    opacity: 1;
+    transition: transform 0.7s ease, opacity 0.7s ease;
+}
+/* Google login button */
+.google-login {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 100%;
+    padding: 15px;
+    background-color: #ffffff;
+    border: 2px solid #eeeeee;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #222831;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.google-btn .google-icon {
+    width: 55px; /* Adjust size as needed */
+    height: 55px; /* Adjust size as needed */
+    margin-right: 5px; /* Space between icon and text */
+    margin-top: 2.5px;
+    margin-bottom: 2.5px;
+}
+
+.google-btn:hover {
+    background-color: #f1f3f4;
+    border-color: #c6c6c6;
+}
+
+.info-content.Register img {
+    width: 125%; /* Adjust this to the desired size */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Maintain rounded corners */
+    object-fit: fill; /* Ensures the image fits well */
+    margin-left: 40px;
+}
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    /* Adjust container widths and paddings */
+    .container {
+        width: 90%;
+        padding: 10px;
+    }
+
+    /* Hide the image divs on small screens */
+    .info-content.Login,
+    .info-content.Register {
+        display: none;
+    }
+
+    .form-box.Register,
+    .form-box.Login {
+        width: 100%;
+    }
+
+    .form-box.Register {
+        padding: 0 40px;
+    }
+
+    .google-text {
+        font-size: small;
+    }
+
+    /* Make images and animations scale properly */
+    img, video, canvas {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Adjust text sizes for readability */
+    h1, h2, h3 {
+        font-size: smaller;
+    }
+
+    p {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    /* Flexbox adjustments */
+    .flex-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Ensure buttons are easy to tap */
+    button {
+        font-size: 16px;
+        padding: 10px 15px;
+    }
+
+    /* Adjust animations */
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    .animated-element {
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    /* Specific adjustments for your layout */
+    .sidebar {
+        display: none; /* Hide sidebar on small screens */
+    }
+
+    .main-content {
+        width: 100%;
+    }
+}

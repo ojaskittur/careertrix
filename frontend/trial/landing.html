@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>CAREERTRIX</title>
+    <link rel="icon" type="image/png" href="/backend/static/image/logo.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./styles/home.css" />
+    <style>
+      .home-section {
+          background: url("/backend/static/image/hero-bg.png") no-repeat center center / cover;
+      }
+  </style>
+  </head>
+  <body>
+    <!-- Shellbar Header -->
+    <header class="header" id="shell-bar">
+      <div class="container">
+        <a href="#top" class="logo-link">
+          <img src="/backend/static/image/logo.png" alt="Logo" class="logo" />
+        </a>
+
+        <!-- Add these meta tags in your head section for better mobile rendering -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="theme-color" content="#222831">
+        <h1 class="title">
+          <span class="magic">
+            <span class="magic-star">
+              <svg viewBox="0 0 512 512">
+                <path
+                  d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z"
+                />
+              </svg>
+            </span>
+            <span class="magic-star">
+              <svg viewBox="0 0 512 512">
+                <path
+                  d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z"
+                />
+              </svg>
+            </span>
+            <span class="magic-star">
+              <svg viewBox="0 0 512 512">
+                <path
+                  d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z"
+                />
+              </svg> </span
+            ><span class="magic-text">CAREERTRIX</span>
+          </span>
+        </h1>
+        <nav class="navbar">
+          <ul>
+            <li><a href="#roadmap">Roadmap</a></li>
+            <li><a href="#job-tracking">Job Tracking</a></li>
+            <li><a href="#job-alerts">Job Alerts</a></li>
+            <li><a href="#mock-interview">Mock Interview</a></li>
+            <li><a href="#mentorship">Mentorship</a></li>
+            <li><a href="#about-us">About Us</a></li>
+            <li><a href="{% url 'signin' %}"   class="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+          </ul>
+        </nav>
+        <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Home Section -->
+    <section class="home-section" id="home">
+      <h1 class="main-text fade-in">
+        Transform Your
+        <span class="magic">
+          <span class="magic-star">
+            <svg viewBox="0 0 512 512">
+              <path
+                d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z"
+              />
+            </svg>
+          </span>
+          <span class="magic-star">
+            <svg viewBox="0 0 512 512">
+              <path
+                d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z"
+              />
+            </svg>
+          </span>
+          <span class="magic-star">
+            <svg viewBox="0 0 512 512">
+              <path
+                d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z"
+              />
+            </svg> </span
+          ><span class="magic-text">Career</span>
+        </span>
+        Journey
+      </h1>
+      <p class="briefing-text fade-in">
+        Your personalized career roadmap, job alerts, and expert<br />guidance —
+        all in one place.
+      </p>
+
+      <div class="image-container">
+        <img
+          src="/backend/static/image/developer.png"
+          alt="Left Image"
+          class="left-image fade-in"
+        />
+        <a href="{% url 'signin' %}"  class="get-started-btn fade-in"><i class="fas fa-sign-in-alt"></i> Get Started</a>
+        <img
+          src="/backend/static/image/developer-team.png"
+          alt="Right Image"
+          class="right-image fade-in"
+        />
+      </div>
+      <h2 class="features-heading fade-in">Features</h2>
+    </section>
+
+    <!-- Sections for Navigation -->
+    <section id="roadmap" class="roadmap-section fade-in">
+      <div class="roadmap-content">
+        <div class="roadmap-text section-text">
+          <h2>Personalized Career Roadmap</h2>
+          <p>
+            Based on your current job, qualifications, and career aspirations,
+            we craft a tailored roadmap for your career journey. Whether you're
+            aiming for a promotion, transitioning industries, or entering the
+            job market, our step-by-step guidance ensures you know exactly what
+            skills to build, certifications to pursue, and milestones to
+            achieve.
+          </p>
+        </div>
+        <div class="roadmap-image-container">
+          <div class="circle-container" style="background-color: #00adb5">
+            <img
+              src="/backend/static/image/roadmap.jpg"
+              alt="Roadmap"
+              class="image-polygon"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Job Tracking Section -->
+    <section id="job-tracking" class="job-tracking-section fade-in">
+      <div class="job-tracking-content">
+        <div class="tracking-image-container">
+          <div class="circle-container" style="background-color: #ffffc1">
+            <img
+              src="/backend/static/image/track.jpg"
+              alt="Job Tracking"
+              class="image-polygon"
+            />
+          </div>
+        </div>
+        <div class="tracking-text section-text">
+          <h2>Job Application Tracking</h2>
+          <p>
+            No more getting lost in the job application process. Keep track of
+            every application, from the moment you hit 'Apply' to the final
+            interview. Get real-time updates on the status of your applications
+            and stay organized with a timeline that shows where you stand with
+            each job.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Job Alerts Section -->
+    <section id="job-alerts" class="job-alerts-section fade-in">
+      <div class="job-alerts-content">
+        <div class="alerts-text section-text">
+          <h2>In-Demand Jobs & Personalized Job Alerts</h2>
+          <p>
+            We analyze current market trends to show you the most in-demand
+            jobs, tailored to your skills and goals. Set up personalized job
+            alerts so you never miss out on opportunities that match your
+            profile. Whether you’re passively browsing or actively looking,
+            you’ll get alerts for jobs that fit your career plan.
+          </p>
+        </div>
+        <div class="alerts-image-container">
+          <div class="circle-container" style="background-color: #00adb5">
+            <img
+              src="/backend/static/image/demand.jpg"
+              alt="Job Alerts"
+              class="image-polygon"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mock Interview Section -->
+    <section id="mock-interview" class="mock-interview-section fade-in">
+      <div class="mock-content">
+        <div class="mock-image-container">
+          <div class="circle-container" style="background-color: #ffffc1">
+            <img
+              src="/backend/static/image/mock.jpg"
+              alt="Mock Interview"
+              class="image-polygon"
+            />
+          </div>
+        </div>
+        <div class="mock-text section-text">
+          <h2>Mock Interviews & AI-Driven Feedback</h2>
+          <p>
+            Nail your next interview with our mock interview practice tool.
+            Answer pre-set questions specific to your target industry, record
+            your responses, and receive AI-driven feedback on your performance.
+            Improve your answers, body language, and timing, with tips on how to
+            handle tough questions and highlight your strengths.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mentorship Section -->
+    <section id="mentorship" class="mentorship-section fade-in">
+      <div class="mentorship-content">
+        <div class="mentorship-text section-text">
+          <h2>Networking & Mentorship</h2>
+          <p>
+            Expand your professional network by connecting with like-minded
+            individuals, experienced professionals, and industry experts. Track
+            your peers' progress, join discussions, and share insights. Find
+            mentors who can guide you based on your career path, with analysis
+            tools that track your growth and mentor feedback.
+          </p>
+        </div>
+        <div class="mentorship-image-container">
+          <div class="circle-container" style="background-color: #00adb5">
+            <img
+              src="/backend/static/image/mentor.jpg"
+              alt="Mentorship"
+              class="image-polygon"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about-us" class="about-us-section fade-in">
+      <h2 class="about-heading fade-in">About Us</h2>
+      <div class="about-us-content">
+        <div class="column1">
+          <h3>CAREERTRIX</h3>
+          <p>
+            Welcome to CAREERTRIX, where career meets transformation! Our platform offers personalized career development tools, including virtual coaching, résumé builders, job tracking, and AI-powered career suggestions. Designed for professionals and employers alike, we help navigate job transitions with ease, providing resources for growth, job search, and skill-building in a supportive, user-friendly environment.
+          </p>
+        </div>
+        <div class="column">
+          <h3>Subscribe Now</h3>
+          <div class="subscribe-section">
+            <div class="subscribe-field">
+              <input
+                type="email"
+                placeholder="Subscribe to Your EMAIL"
+                required
+              />
+              <button type="submit">Subscribe</button>
+            </div>
+            <div class="social-icons">
+              <a href="https://www.linkedin.com" target="_blank"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+              <a href="https://www.facebook.com" target="_blank"
+                ><i class="fab fa-facebook"></i
+              ></a>
+              <a href="https://www.instagram.com" target="_blank"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="https://twitter.com" target="_blank"
+                ><i class="fab fa-twitter"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+        <div class="column1">
+            <h3>CAREERMATE-Chatbot</h3>
+            <p>
+              CareerMate is an AI-powered virtual assistant that provides quick, real-time support for career guidance. It helps with job searches, interview prep, résumé tips, and career advice, ensuring users receive timely assistance and personalized coaching as they navigate their career journey.<div class="line">
+              </div>
+                <a 
+                id="channel-link" 
+                href="https://drive.google.com/uc?export=download&id=1hTmN75VjSaeepcoSGZAmUWY7IsyRIBVZ" 
+                class="word fancy" 
+                download="careertrix.ppt"
+                >@PRESENTATION</a>
+              </div>
+            </p>
+            
+        </div>
+      </div>
+    </section>
+    <script src="https://cdn.botpress.cloud/webchat/v2.1/inject.js"></script>
+      <script src="https://mediafiles.botpress.cloud/3177457b-276e-453f-abbe-3fe6165f9843/webchat/v2.1/config.js"></script>
+    <script src="./script/home.js"></script>
+  </body>
+</html>

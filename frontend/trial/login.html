@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CAREERTRIX</title>
+  <link rel="icon" type="image/png" href="/backend/static/image/logo.png" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles/login.css" />
+  <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+</head>
+
+<body>
+  <div class="card-track">
+    <div class="card-wrapper">
+      <div class="card">
+        <div class="card-image">
+          <div class="top-bar">
+            <a href="{% url 'landing' %}" class="back-button">
+              <img src="/backend/static/image/logo.png" class="logo" alt="logo" />
+              <i class="bx bx-left-arrow-alt"></i> <i class="fas fa-home"></i> 
+            </a>
+            <div class="time-date" style="color: #eeeeee">
+              <p id="time"></p>
+              <p id="date"></p>
+            </div>
+            <div id="error-container" class="error-message" style="display: none; color: red">
+              <span id="error-message"></span>
+            </div>
+          </div>
+          <div class="container">
+            <div class="curved-shape"></div>
+            <div class="curved-shape2"></div>
+            <div class="form-box Login">
+              <h2 class="animation" style="--D: 0; --S: 21">Login</h2>
+              <form action="" method="post" id="loginForm">
+                <input type="hidden" name="check" value="old_user">
+                <div class="input-box animation" style="--D: 1; --S: 22">
+                  <input type="text" name="username" id="logusername" required />
+                  <label>Username</label>
+                  <i class="bx bxs-user"></i>
+                </div>
+                <div class="input-box animation" style="--D: 2; --S: 23">
+                  <input type="password" name="password" id="confirmPassword" required />
+                  <label>Password</label>
+                  <i class="bx bxs-lock-alt" id="togglePassword"></i>
+                </div>
+                <div class="input-box animation" style="--D: 3; --S: 24">
+                  <button class="btn" type="submit" id="loginSubmit">
+                    Login
+                  </button>
+                </div>
+                <div class="regi-link animation" style="--D: 4; --S: 25">
+                  <p>
+                    Don't have an account?
+                    <a href="#" class="SignUpLink">Sign Up</a>
+                  </p>
+                </div>
+                <div class="input-box google-login animation" style="--li: 22; --S: 6">
+                  <button type="button" class="google-btn">
+                    <img src="/backend/static/image/google.png" alt="Google" class="google-icon" />
+                    <a href="{% provider_login_url 'google' %}?process=login" class="google-text" style="text-decoration: none;">
+                      Continue with Google
+                  </a>                  
+                  </button>
+<p>Your username and password didn't match. Please try again.</p>
+                </div>
+                <br>
+                <br>
+                <div class="message-container" style="display: block; color: red;">
+                  <ul class="messages">
+                      <li{% if message.tags %} class="{{ message.tags }}"{% endif %} style="color: white; display: block;"></li>
+                  </ul>
+              </div>
+              
+
+              </form>
+            </div>
+
+            <div class="info-content Login">
+              <img src="/backend/static/image/first.png" alt="Welcome Back" />
+            </div>
+
+            <div class="form-box Register">
+
+              <h2 class="animation" style="--li: 17; --S: 0">Register</h2>
+              <form action="" method="post" id="registerForm">
+                <input type="hidden" name="check" value="new_user">
+                <div class="input-box animation" style="--li: 18; --S: 1">
+                    <input name="username" type="text" required />
+                    <label>Username</label>
+                    <i class="bx bxs-user"></i>
+                </div>
+                <div class="input-box animation" style="--li: 18; --S: 1">
+                    <input type="email" name="email" id="signemail" required />
+                    <label>Email</label>
+                    <i class="bx bxs-envelope"></i>
+                </div>
+                <div class="input-box animation" style="--li: 19; --S: 2">
+                    <input type="password" name="password" id="logpassword" required />
+                    <label>Password</label>
+                    <i class="bx bxs-lock-alt" id="loginPassword"></i>
+                </div>
+                <div class="input-box animation" style="--li: 20; --S: 3">
+                    <input type="password" name="password2" id="repPassword" required />
+                    <label>Re-Enter Password</label>
+                    <i class="bx bxs-lock-alt" id="repeatPassword"></i>
+                </div>
+                <div class="input-box animation" style="--li: 21; --S: 4">
+                    <button class="btn" type="submit" id="registerSubmit">
+                      Register
+                    </button>
+                </div>
+                <div class="regi-link animation" style="--li: 22; --S: 5">
+                    <p>
+                        Already have an account?
+                        <a class="SignInLink">SignIn</a>
+                    </p>
+                </div>
+                <div class="input-box google-login animation" style="--li: 22; --S: 6">
+                    <button type="button" class="google-btn">
+                        <img src="/backend/static/image/google.png" alt="Google" class="google-icon" />
+                        <a href="{% provider_login_url 'google' %}?next=/api/home/" class="google-text" style="text-decoration: none;">Continue With Google</a>
+                    </button>
+                    <div class="message-container" style="display: block; color: red;">
+                        <ul class="messages">
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </form>            
+            </div>
+
+            <div class="info-content Register">
+              <img src="/backend/static/image/file.png" alt="Description" />
+            </div>
+          </div>
+        </div>
+        <div class="card-gradient"></div>
+        <div class="card-letters"></div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="./script/login.js"></script>
+</html>

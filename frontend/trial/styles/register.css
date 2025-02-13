@@ -1,0 +1,895 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #191717;
+    color: #EEEEEE;
+    padding: 20px;
+    /* Wavy Background for entire body */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(10px, 4vw, 100px);
+    overflow-y: hidden;
+  }
+  
+  body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-image: url("https://assets.codepen.io/1468070/Repeatable+Pattern+-+Wavy+Lines.png?format=auto&quality=80");
+    background-size: 200%;
+    opacity: 0.2; /* Adjust the opacity to make it more subtle */
+    z-index: -1;
+    animation: move-background 50s linear infinite;
+  }
+  
+  @keyframes move-background {
+    0% {
+      background-position: 0% 0%;
+    }
+    100% {
+      background-position: -300% 0%; /* Speed up the background movement */
+    }
+  }
+  
+  
+  body:hover > #trailer {
+    opacity: 1;
+  }
+  
+  #trailer {
+    height: 20px;
+    width: 20px;
+    background-color: white;
+    border-radius: 20px;
+  
+    position: fixed;
+    left: 0;
+    top: 0;
+    pointer-events: none; /* Prevent blocking interactions */
+    z-index: 9999; /* Ensure it is above other elements visually */
+    opacity: 0;
+    transition: opacity 500ms ease;
+  
+    display: grid;
+    place-items: center;
+  }
+  
+  #trailer:not([data-type=""]) > #trailer-icon {
+    opacity: 1;
+  }
+  
+  #trailer-icon {
+    font-size: 6px;
+    line-height: 4px;
+    color: #000;
+    opacity: 0;
+    transition: opacity 400ms ease;
+    pointer-events: none;
+  }
+  
+  .interactable {
+    aspect-ratio: 1 / 1.5;
+    width: clamp(120px, 40vmin, 600px);
+    background-position: center 50%;
+    background-size: 100%;
+    opacity: 1;
+    transition: transform 0.8s ease, opacity 0.8s ease;
+    cursor: pointer;
+    margin-top: 125px;
+  }
+  
+  .interactable.left {
+    transform: translateX(-140%); /* Move 5% from the left */
+  }
+  
+  .interactable.right {
+    transform: translateX(140%); /* Move 5% from the right */
+  }
+  
+  .interactable.reset {
+    transform: translateX(0); /* Reset to original position */
+  }
+  
+  .hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none; /* Prevent interaction when hidden */
+    transition: opacity 0.8s ease, visibility 0s 0.8s; /* Sync transition */
+  }
+  
+  .visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto; /* Allow interaction when visible */
+    transition: opacity 0.8s ease;
+    z-index: 10;
+  }
+  
+  
+  .interactable:hover {
+    background-size: 105%;
+    opacity: 0.8;
+  }
+  
+  .interactable.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.8s ease-in-out;
+  }
+  
+  .header {
+    background-color: #222831;
+    color: #EEEEEE;
+    height: 84px;
+    width: 100%;
+    padding: 5px 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    transition: top 0.3s;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 12.5px;
+  }
+  
+  /* Group logo and title together */
+  .logo-link, .title {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Push the navbar to the center */
+  .navbar {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Align the right-side elements (icon, username, logout button) */
+  #profile-user, .profile-user, .logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .logo {
+    height: 60px;
+    width: 80px;
+    margin-right: 10px;
+  }
+  
+  .title {
+    color: #00ADB5;
+    font-size: 30px;
+    font-weight: 700;
+    margin-right: 5px;
+    margin-left: 0px;
+  }
+  
+  .navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+  }
+  
+  .navbar ul li a {
+    color: #EEEEEE;
+    padding: 10px 15px;
+    font-size: 20px;
+    text-decoration: none;
+  }
+  
+  .navbar ul li a:hover {
+    background-color: #00ADB5;
+    color: #222831;
+    border-radius: 5px;
+  }
+  
+  .logout-btn {
+    background-color: #b50000;
+    color: #EEEEEE;
+    padding: 10px 20px;
+    font-size: 20px;
+    width: 70px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-right: 30px!important;
+    margin-left: 20px;
+  }
+  
+  .logout-btn:hover {
+    background-color: var(--purple);
+  }
+  
+  @keyframes background-pan {
+    from {
+      background-position: 0% center;
+    }
+    
+    to {
+      background-position: -200% center;
+    }
+  }
+  
+  @keyframes scale {
+    from, to {
+      transform: scale(0);
+    }
+    
+    50% {
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    
+    to {
+      transform: rotate(180deg);
+    }
+  }
+  
+  h1 {
+    color: white;
+    font-size: clamp(2em, 2vw, 4em);
+    font-weight: 400;
+    margin: 0px;
+    padding: 2.5px;
+    text-align: center;
+  }
+  
+  h1 > .magic {
+    display: inline-block;
+    position: relative;
+  }
+  
+  h1 > .magic > .magic-star {
+    --size: clamp(20px, 1.5vw, 30px);
+    
+    animation: scale 700ms ease forwards;
+    display: block;
+    height: var(--size);
+    left: var(--star-left);
+    position: absolute;
+    top: var(--star-top);
+    width: var(--size);
+  }
+  
+  h1 > .magic > .magic-star > svg {
+    animation: rotate 1000ms linear infinite;
+    display: block;
+    opacity: 0.7;
+  }
+  
+  h1 > .magic > .magic-star > svg > path {
+    fill: var(--violet);
+  }
+  
+  h1 > .magic > .magic-text {
+    animation: background-pan 3s linear infinite;
+    background: linear-gradient(
+      to right,
+      var(--purple),
+      var(--violet),
+      var(--pink),
+      var(--purple)
+    );
+    background-size: 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    white-space: nowrap;
+  }
+  
+  :root {  
+    --purple: rgb(123, 31, 162);
+    --violet: rgb(103, 58, 183);
+    --pink: rgb(244, 143, 177);
+    --green: rgb(42, 252, 152);
+    --blue: rgb(41, 121, 255);
+  }
+  
+  /* Resume Upload Tile */
+  .tile {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #222831;
+    color: #eeeeee;
+    width: 80%;
+    max-width: 500px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+    z-index: 2;
+  }
+  
+  .tile.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .tile button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #00adb5;
+    border: none;
+    border-radius: 5px;
+    color: #eeeeee;
+    cursor: pointer;
+  }
+  
+  .tile button:hover {
+    background-color: #007f87;
+  }
+  
+  :root {
+    --primary-color: mediumslateblue;
+  }
+  
+    
+  h1, h2, h3, p {
+    margin: 0rem;
+  }
+
+  .profile-dropdown {
+    display: none;
+}
+  
+  .card {
+    width: 700px;
+    height: 500px;
+    position: fixed;
+    background-color: rgb(16 16 16);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 1.5rem;
+    padding: 1rem;
+    margin-top: 125px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+    z-index: 10;
+  }
+  
+  .card.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+    
+  .card.show {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease, visibility 0s;
+  }
+  
+  .card:after {  
+    content: "";
+    height: 70px;
+    width: 1px;  
+    position: absolute;  
+    left: -1px;
+    top: 65%;
+    transition: top, opacity;
+    transition-duration: 600ms;
+    transition-timing-function: ease;
+    background: linear-gradient(
+      transparent,
+      var(--primary-color),
+      transparent
+    );
+    opacity: 0;
+  }
+  
+  .card:after {  
+    top: 65%;
+    opacity: 0;
+  }
+  
+  .card:hover:after {
+    top: 25%;
+    opacity: 1;
+  }
+  
+  .card-content {  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    background-image: radial-gradient(
+      rgba(255, 255, 255, 0.1) 1px, 
+      transparent 1px
+    );
+    background-position: 50% 50%;
+    background-size: 1.1rem 1.1rem;
+    padding: 4rem;
+    border-radius: 1.25rem;
+    overflow: hidden;
+    height: 380px;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  .card-content > :is(h1, h3, p, label, select) {
+    text-align: center;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+  }
+  
+  .card-content > h1 {
+    color: rgb(250 249 246); 
+    font-size: 2.6rem;
+  }
+  
+  .card-content > h3 {
+    color: var(--primary-color);
+    text-transform: uppercase;
+    font-size: 0.76rem;
+  }
+  
+  .card-content > p {
+    color: rgb(255 255 255 / 75%);
+    line-height: 1.5rem;
+  }
+  
+  @media(max-width: 700px) {
+    .card {
+      width: calc(100% - 2rem);
+      margin: 0rem 1rem;
+      padding: 0.75rem;
+      border-radius: 1rem;
+      transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+    }
+  }
+  
+  @media(max-width: 600px) {
+    .card-content {
+      padding: 3rem;
+    }
+    
+    .card-content > h1 {
+      font-size: 2.2rem;
+    }
+  }
+  
+  button {
+    background-color: #00ADB5;  /* Matching the header button style */
+    color: #EEEEEE;
+    padding: 10px 20px;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 5px;
+    margin-left: 250px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #007f87;  /* Slightly darker shade for hover effect */
+  }
+  
+  /* Styling form text (labels, headings, etc.) */
+  form label,
+  form h1,
+  form p {
+    color: #EEEEEE;
+    font-size: 18px;
+    margin-bottom: 10px;
+    margin-left: 25px;
+  }
+  
+  /* Styling input fields */
+  /* Styling input fields */
+  input[type="text"], input[type="number"], input[type="file"], input[type="date"], input[type="email"], textarea, select {
+    background-color: #222831;
+    color: rgb(118, 118, 118);
+    border: 1px solid #555555;
+    padding: 6px 8px;
+    width: 50%; /* Ensures the select fields match the input field width */
+    border-radius: 5px;
+    font-size: 12px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    box-sizing: border-box; /* Ensures padding and border are included in the width calculation */
+  }
+  
+  input[type="text"]:focus, input[type="file"], input[type="number"]:focus, input[type="date"]:focus, input[type="email"]:focus, textarea:focus, select:focus {
+    border-color: #00ADB5;
+    outline: none;
+  }
+  
+  /* Ensure form sections are aligned horizontally */
+  .form-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  
+  /* Labels and inputs are on the same line */
+  .form-section label {
+    margin-right: 10px;
+    width: 200px;
+  }
+  
+  .form-section input,
+  .form-section select {
+    padding: 8px;
+    width: 50%; /* Consistent width for both input and select fields */
+    box-sizing: border-box; /* Ensures padding and border are accounted for */
+  }
+  
+  
+  input[type="file"] {
+    font-size: 1rem;
+    padding: 10px;
+    width: 250px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
+  /* Ensure form sections are aligned horizontally */
+  .form-section {
+    display: flex;
+    flex-wrap: wrap; /* Allows for flexibility with long inputs */
+    align-items: center;
+  }
+  
+  /* Labels and inputs are on the same line */
+  .form-section label {
+    margin-right: 10px;
+    width: 200px; /* You can adjust the width of the label */
+  }
+  
+  .form-section input,
+  .form-section select {
+    padding: 8px;
+    width: 300px; /* Adjust input width as needed */
+  }
+  
+  /* Center the file input */
+  input[type="file"] {
+    margin: 0 auto;
+    display: block;
+    font-size: 22px;
+    width: 300px;
+    height: 25px; /* You can adjust the height as needed */
+  }
+  
+  
+  .card-content h3,
+  .card-content select,
+  .card-content label,
+  .card-content h1,
+  .card-content p,
+  .card-content button,
+  .card-content input {
+      opacity: 0;
+      transform: opacity 0.5s ease-in-out, translateY(20px);
+      transition: all 2.0s ease; /* Match duration and easing */
+  }
+  
+  .card.visible .card-content h3,
+  .card-content select,
+  .card-content label,
+  .card.visible .card-content h1,
+  .card.visible .card-content p,
+  .card.visible .card-content button,
+  .card.visible .card-content input {
+      opacity: 1;
+      transform: translateY(0);
+  }
+/* Mobile-Responsive Header */
+@media (max-width: 768px) {
+  .header {
+    height: 50px;
+    padding: 0 15px;
+  }
+  .header .container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0;
+  }
+
+  .logo {
+    height: 35px;
+    width: auto;
+  }
+
+  .title {
+    font-size: 20px;
+    margin: 0;
+  }
+
+  /* Hide initial nav items and logout */
+  .navbar ul,
+  .logout-btn {
+    display: none;
+  }
+
+  /* Profile dropdown styles */
+  .profile-dropdown {
+    position: relative;
+  }
+
+  #profile-user {
+    font-size: 14px;
+    color: #EEEEEE;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .profile-dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 45px;
+    background-color: #222831;
+    min-width: 150px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    z-index: 1000;
+  }
+
+  .profile-dropdown-content.show {
+    display: block;
+  }
+
+  .profile-dropdown-content a {
+    color: #EEEEEE;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+  }
+
+  .profile-dropdown-content a:hover {
+    background-color: #00ADB5;
+  }
+  
+  /* Interactable adjustments */
+  .interactable {
+    height: 400px; /* Initial height */
+    margin-top: 60px;
+    aspect-ratio: auto;
+    width: clamp(120px, 40vmin, 600px);
+    transition: height 0.3s ease; /* Smooth transition */
+  }
+
+  .interactable.left {
+    transform: translateY(-70%); /* Move 5% from the left */
+  }
+  
+  .interactable.right {
+    transform: translateY(-70%); /* Move 5% from the right */
+  }
+  
+  .interactable.reset {
+    transform: translateY(0); /* Reset to original position */
+  }
+
+  .form-section {
+    position: relative;
+  }
+
+  /* Card adjustments */
+  .card {
+    width: 95%;
+    margin-top: 20px;
+    height: calc(100vh - 660px); /* Adjust height based on interactable and other elements */
+    overflow-y: auto; /* Enable scrolling */
+    display: flex;
+    flex-direction: column;
+}
+
+  .card-content {
+    padding: 1rem;
+    padding-left: 0%;
+    overflow: scroll;
+    margin-bottom: 10px;
+    overflow-x: hidden; /* Hides any overflowing content */
+  text-overflow: ellipsis; /* Adds "..." if text overflows (optional) */
+  white-space: nowrap; /* Prevents text from wrapping (optional) */
+  word-wrap: break-word; /* Ensures long words break into the next line */
+  max-width: 100%;
+  }
+
+  .card.visible{
+    height: 700px;
+  }
+
+  .card-content > h1 {
+    font-size: 1.4rem;
+    left: 0%;
+  }
+
+  .card-content > h3 {
+    font-size: 0.7rem;
+    margin-top: 300px;
+  }
+
+  .card-content > p {
+    font-size: 0.9rem;
+  }
+  .card-content p {
+    width: 300px;
+    margin-left: 40px;
+  }
+  .card-content button {
+    width: 300px;
+    margin-left: 25px;
+  }
+
+  .card-content > h3.no{
+    margin-top: 20px;
+  }
+
+  /* Form adjustments */
+  .form-section {
+    margin-bottom: 12px;
+    margin-left: 15px;
+  }
+
+  .form-section label {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+
+  form label,
+  form h1,
+  form p {
+    color: #EEEEEE;
+    font-size: 18px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  input[type="file"],
+  input[type="date"],
+  input[type="email"],
+  select {
+    font-size: 14px;
+    padding: 8px;
+    margin-bottom: 8px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 10px 16px;
+    width: auto;
+    min-width: 120px;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 380px) {
+  .title {
+    font-size: 18px;
+  }
+
+  .card-content > h1 {
+    font-size: 1.2rem;
+  }
+
+  input[type="file"] {
+    font-size: 15px;
+    height: 70px;
+  }
+}
+
+/* Mobile Header and Navigation */
+@media (max-width: 768px) {
+  .header {
+    height: 50px;
+    padding: 0 15px;
+  }
+
+  .profile-user {
+    display: none;
+}
+
+  .header .container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 330px;
+    padding: 0;
+  }
+
+  .logo {
+    height: 35px;
+    width: auto;
+  }
+
+  .title {
+    font-size: 1.5rem;
+    margin: 0;
+  }
+
+  /* Hide default nav and logout */
+  .navbar, 
+  .logout-btn {
+    display: none;
+  }
+
+  /* Profile Menu Styles */
+  .profile-menu {
+    position: relative;
+  }
+
+  #profile-user {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #EEEEEE;
+    text-decoration: none;
+  }
+
+  .profile-dropdown {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: #222831;
+    min-width: 150px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    display: none;
+    z-index: 1000;
+  }
+
+  .profile-dropdown.active {
+    display: block;
+  }
+
+  .profile-dropdown a {
+    color: #EEEEEE;
+    padding: 12px 15px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+  }
+
+  .profile-dropdown a:hover {
+    background-color: #00ADB5;
+  }
+
+  /* Hide mouse trailer on mobile */
+  #trailer {
+    display: none !important;
+  }
+
+  /* Card position adjustment */
+  .card {
+    margin-top: 650px;
+    height: 700px;
+  }
+}
+

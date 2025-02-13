@@ -1,0 +1,199 @@
+:root {
+    --g1: rgb(98, 0, 234);
+    --g2: rgb(236, 64, 122);
+  }
+  
+  @keyframes background-pan {
+    from {
+      background-position: 0% center;
+    }
+    to {
+      background-position: -200% center;
+    }
+  }
+  
+  body {
+    animation: background-pan 10s linear infinite;
+    background: linear-gradient(
+      to right,
+      var(--g1),
+      var(--g2),
+      var(--g1)
+    );
+    background-size: 200%;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0px;
+  }
+  
+  body.toggled {
+    animation: none;
+  }
+  
+  body.toggled > #title {
+    opacity: 0;
+  }
+  
+  body.toggled > #icon {
+    opacity: 1;
+  }
+  
+  body.toggled > #tiles > .tile:hover {
+    opacity: 0.1 !important;
+  }
+  
+  .centered {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  #tiles {
+    height: calc(100vh - 1px);
+    width: calc(100vw - 1px);
+    position: relative;
+    z-index: 2;
+  
+    display: grid;
+    grid-template-columns: repeat(var(--columns), 1fr);
+    grid-template-rows: repeat(var(--rows), 1fr);
+  }
+  
+  .tile {
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .tile:hover:before {
+    background-color: rgb(30, 30, 30);
+  }
+  
+  .tile:before {
+    background-color: rgb(15, 15, 15);
+    content: "";
+    inset: 0.5px;
+    position: absolute;
+  }
+  
+  #title {
+    color: white;
+    font-family: "Rubik", sans-serif;
+    font-size: 6vw;
+    margin: 0px;
+    pointer-events: none;
+    transition: opacity 1200ms ease;
+    z-index: 3;
+    text-align: center; /* Ensure the text is centered */
+    max-width: 90%; /* Allow the title to be more flexible in width */
+  }
+  
+  #title > .fancy {
+    color: var(--g2);
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5em;
+    line-height: 1.2em;
+  }
+  
+  #title br {
+    display: block;
+    margin-bottom: 0.5em; /* Add space between the lines */
+  }
+   
+  
+  #icon {
+    color: rgba(255, 255, 255, 0.15);
+    font-size: 80vmin;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1200ms ease;
+    z-index: 1;
+  }
+  
+  #home-btn {
+    display: none;
+    position: fixed; /* Fixed positioning to ensure it stays in center of the screen */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust the transform to maintain center */
+    z-index: 5;
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Ensure smooth toggle effect */
+    opacity: 0;
+    transform: scale(0.8); /* Start smaller */
+  }
+  
+  body.toggled #home-btn {
+    display: flex;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1); /* Ensure centered on toggle */
+  }
+  
+  #home-btn .text a {
+    text-decoration: none;
+    color: white;
+  }
+  
+  /* Updated Button Styles */
+  .btn {
+    border: none;
+    width: 15em;
+    height: 5em;
+    border-radius: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    background: #1C1A1C;
+    cursor: pointer;
+    transition: all 0.45s ease-in-out;
+    z-index: 6;
+    position: relative; /* Prevent layout shift */
+  }
+  
+  .sparkle {
+    fill: #AAAAAA;
+    transition: all 0.8s ease;
+  }
+  
+  .text {
+    font-weight: 600;
+    color: #AAAAAA;
+    font-size: medium;
+  }
+  
+  .btn:hover {
+    background: linear-gradient(0deg, #A47CF3, #683FEA);
+    box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.4),
+                inset 0px -4px 0px 0px rgba(0, 0, 0, 0.2),
+                0px 0px 0px 4px rgba(255, 255, 255, 0.2),
+                0px 0px 180px 0px #9917FF;
+    transform: translateY(-2px); /* Ensure no layout shift */
+  }
+  
+  .btn:hover .text {
+    color: white;
+  }
+  
+  .btn:hover .sparkle {
+    fill: white;
+    transform: scale(1.2);
+  }
+  
+  @media (max-width: 768px) {
+    .btn {
+      width: 8em; /* Reduce width */
+      height: 3em; /* Reduce height */
+      border-radius: 2em; /* Adjust border radius */
+      gap: 8px; /* Reduce spacing */
+      margin-top: 200px;
+    }
+  
+    .text {
+      font-size: small; /* Adjust text size */
+    }
+  
+    .sparkle {
+      transform: scale(0.8); /* Scale down the sparkle icon */
+    }
+  }
+  
