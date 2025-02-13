@@ -84,7 +84,7 @@
       <label for="job-dropdown">Desiered Jobs:</label>
       <input type="text" name="job-dropdown" id="job-dropdown">
     </div>
-    <button id="generate-button" type="submit">Generate</button>
+    <button id="generate-button" type="submit"><i class="fas fa-plus"></i> Generate</button>
   </form>
   <br><br>
   <h2>Previous Roadmaps:</h2>
@@ -94,7 +94,7 @@
         <form method="POST" action="{% url 'home' %}">
             {% csrf_token %}
             <button type="submit" name="job-dropdown" value="{{ response.field }}" id="generate-button">
-                {{ response.field }}
+                <i class="fas fa-plus"></i> {{ response.field }}
             </button>
         </form>
     {% endfor %}
