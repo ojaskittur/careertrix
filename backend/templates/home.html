@@ -84,7 +84,7 @@
       <label for="job-dropdown">Desiered Jobs:</label>
       <input type="text" name="job-dropdown" id="job-dropdown">
     </div>
-    <button id="generate-button" type="submit"><i class="fas fa-plus"></i> Generate</button>
+    <button id="generate-button" type="submit">Generate</button>
   </form>
   <br><br>
   <h2>Previous Roadmaps:</h2>
@@ -94,168 +94,17 @@
         <form method="POST" action="{% url 'home' %}">
             {% csrf_token %}
             <button type="submit" name="job-dropdown" value="{{ response.field }}" id="generate-button">
-                <i class="fas fa-plus"></i> {{ response.field }}
+                {{ response.field }}
             </button>
         </form>
     {% endfor %}
   </div>
 </section>
-        <section class="trending-jobs" id="trending-jobs">
-          <h1>Trending Jobs</h1>
-          <div id="cards">
-            <div class="card">
-              <div class="card-content">
-                <div class="card-image">
-                  <i class="fa-duotone fa-apartment"></i>
-                </div>
-                <div class="card-info-wrapper">
-                  <div class="card-info">
-                    <i class="fa-duotone fa-apartment"></i>
-                    <div class="card-info-title">
-                      <img
-                        src="{% static 'image/company-logo1.jpg' %}"
-                        alt="Company 1 Logo"
-                        class="company-logo"
-                      />
-                      <h2>Software Engineer</h2>
-                      <p class="company-name">Tech Corp</p>
-                      <p class="job-type">IT, Full Time</p>
-                      <p class="experience">Experience: 2+ years</p>
-                      <p class="closing-date">Application Closing: Oct 15, 2024</p>
-                      <a href="apply1.html" class="apply-btn">Apply Now</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-content">
-                <div class="card-image">
-                  <i class="fa-duotone fa-unicorn"></i>
-                </div>
-                <div class="card-info-wrapper">
-                  <div class="card-info">
-                    <i class="fa-duotone fa-unicorn"></i>
-                    <div class="card-info-title">
-                      <img
-                        src="{% static 'image/company-logo2.jpg' %}"
-                        alt="Company 2 Logo"
-                        class="company-logo"
-                      />
-                      <h2>Product Manager</h2>
-                      <p class="company-name">Innovate Ltd</p>
-                      <p class="job-type">Management, Full Time</p>
-                      <p class="experience">Experience: 5+ years</p>
-                      <p class="closing-date">Application Closing: Oct 20, 2024</p>
-                      <a href="apply2.html" class="apply-btn">Apply Now</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-content">
-                <div class="card-image">
-                  <i class="fa-duotone fa-unicorn"></i>
-                </div>
-                <div class="card-info-wrapper">
-                  <div class="card-info">
-                    <i class="fa-duotone fa-unicorn"></i>
-                    <div class="card-info-title">
-                      <img
-                        src="{% static 'image/company-logo3.jpg' %}"
-                        alt="Company 2 Logo"
-                        class="company-logo"
-                      />
-                      <h2>Product Manager</h2>
-                      <p class="company-name">Innovate Ltd</p>
-                      <p class="job-type">Management, Full Time</p>
-                      <p class="experience">Experience: 5+ years</p>
-                      <p class="closing-date">Application Closing: Oct 20, 2024</p>
-                      <a href="apply2.html" class="apply-btn">Apply Now</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-content">
-                <div class="card-image">
-                  <i class="fa-duotone fa-person-to-portal"></i>
-                </div>
-                <div class="card-info-wrapper">
-                  <div class="card-info">
-                    <i class="fa-duotone fa-person-to-portal"></i>
-                    <div class="card-info-title">
-                      <img
-                        src="{% static 'image/company-logo4.jpg' %}"
-                        alt="Company 4 Logo"
-                        class="company-logo"
-                        style="height: 100px"
-                      />
-                      <h2>UI/UX Designer</h2>
-                      <p class="company-name">DesignPro</p>
-                      <p class="job-type">Design, Full Time</p>
-                      <p class="experience">Experience: 3+ years</p>
-                      <p class="closing-date">Application Closing: Nov 1, 2024</p>
-                      <a href="apply4.html" class="apply-btn">Apply Now</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-content">
-                <div class="card-image">
-                  <i class="fa-duotone fa-person-from-portal"></i>
-                </div>
-                <div class="card-info-wrapper">
-                  <div class="card-info">
-                    <i class="fa-duotone fa-person-from-portal"></i>
-                    <div class="card-info-title">
-                      <img
-                        src="{% static 'image/company-logo5.jpg' %}"
-                        alt="Company 5 Logo"
-                        class="company-logo"
-                      />
-                      <h2>Marketing Specialist</h2>
-                      <p class="company-name">MarketMasters</p>
-                      <p class="job-type">Marketing, Part Time</p>
-                      <p class="experience">Experience: 4+ years</p>
-                      <p class="closing-date">Application Closing: Nov 10, 2024</p>
-                      <a href="apply5.html" class="apply-btn">Apply Now</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-content">
-                <div class="card-image">
-                  <i class="fa-duotone fa-unicorn"></i>
-                </div>
-                <div class="card-info-wrapper">
-                  <div class="card-info">
-                    <i class="fa-duotone fa-unicorn"></i>
-                    <div class="card-info-title">
-                      <img
-                        src="{% static 'image/company-logo6.jpg' %}"
-                        alt="Company 2 Logo"
-                        class="company-logo"
-                      />
-                      <h2>Product Manager</h2>
-                      <p class="company-name">Innovate Ltd</p>
-                      <p class="job-type">Management, Full Time</p>
-                      <p class="experience">Experience: 5+ years</p>
-                      <p class="closing-date">Application Closing: Oct 20, 2024</p>
-                      <a href="apply2.html" class="apply-btn">Apply Now</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+<section class="trending-jobs" id="trending-jobs">
+  <h1>Trending Jobs</h1>
+  <!-- Search will be inserted here by JavaScript -->
+  <div id="cards"></div>
+</section>
       </main>
     </div>
       <script src="https://cdn.botpress.cloud/webchat/v2.1/inject.js"></script>
