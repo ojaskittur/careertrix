@@ -165,8 +165,8 @@ const createJobCard = (job) => {
               <p class="closing-date">Application Closing: ${closingDate.toLocaleDateString()}</p>
               <p class="job-description-preview">${jobDescriptionPreview}</p>
               ${jobUrl ? 
-                `<a href="${jobUrl}" target="_blank" rel="noopener noreferrer" class="apply-btn">Apply Now</a>` : 
-                `<button class="apply-btn" style="opacity:0.7;cursor:not-allowed" onclick="alert('Application link not available for this position.')">Apply Now</button>`
+                `<a href="${jobUrl}" target="_blank" rel="noopener noreferrer" class="apply-btn"><i class="fas fa-share"></i> Apply Now</a>` : 
+                `<button class="apply-btn" style="opacity:0.7;cursor:not-allowed" onclick="alert('Application link not available for this position.')"><i class="fas fa-share"></i> Apply Now</button>`
               }
             </div>
           </div>
