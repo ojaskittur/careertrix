@@ -29,14 +29,12 @@ const setupMobileMenu = () => {
   
   profileUser.parentNode.insertBefore(dropdown, profileUser.nextSibling);
 
-  // Toggle dropdown on profile click
   profileUser.addEventListener("click", (e) => {
     e.preventDefault();
     e.stopPropagation();
     dropdown.classList.toggle("active");
   });
 
-  // Close dropdown when clicking outside
   document.addEventListener("click", (e) => {
     if (!dropdown.contains(e.target) && e.target !== profileUser) {
       dropdown.classList.remove("active");
@@ -49,7 +47,6 @@ const setupBottomNav = () => {
   const links = document.querySelectorAll('.side-nav .link');
   const sections = document.querySelectorAll('.section-box');
 
-  // Handle click events on navigation links
   links.forEach(link => {
     link.addEventListener('click', function() {
       links.forEach(l => l.classList.remove('active'));
@@ -57,7 +54,6 @@ const setupBottomNav = () => {
     });
   });
 
-  // Handle scroll events for active section highlighting
   window.addEventListener('scroll', () => {
     let current = '';
     sections.forEach(section => {
@@ -78,7 +74,6 @@ const setupBottomNav = () => {
 
 // Mouse effects setup
 const setupMouseEffects = () => {
-  // Link hover effects
   const links = document.getElementsByClassName("link");
   if (links.length > 0) {
     for (const link of links) {
@@ -93,7 +88,6 @@ const setupMouseEffects = () => {
     }
   }
 
-  // Cards hover effect
   const cards = document.getElementById("cards");
   if (cards) {
     cards.onmousemove = e => {
@@ -108,107 +102,55 @@ const setupMouseEffects = () => {
   }
 };
 
-// Generate button event handler
-const setupGenerateButton = () => {
-  const generateButton = document.getElementById("generate-button");
-  if (!generateButton) return;
-
-  generateButton.addEventListener("click", () => {
-    const outputMessage = document.getElementById("output-message");
-    const placeholderMessage = document.getElementById("placeholder-message");
-    const iframe = document.getElementById("output-iframe");
-    const roadmapSection = document.getElementById("roadmap-section");
-    
-    const jobSelected = document.getElementById("job-dropdown").value;
-    const skillsSelected = document.getElementById("skills-dropdown").value;
-  
-    if (jobSelected !== "Select Option" && skillsSelected !== "Select Option") {
-      const iframeURL = `test.html?job=${jobSelected}&skills=${skillsSelected}`;
-      
-      iframe.src = iframeURL;
-      outputMessage.style.display = "block";
-      iframe.style.display = "block";
-      placeholderMessage.style.display = "none";
-      roadmapSection.style.display = "block";
-    } else {
-      alert("Please select both a job and a skill.");
-    }
-  });
-};
-
-// New function to fetch and display jobs
-const fetchJobs = async () => {
-  const cardsContainer = document.getElementById("cards");
-  
-  try {
-    // Show loading state
-    cardsContainer.innerHTML = '<div class="loader">Loading jobs...</div>';
-    
-    // Fetch job IDs from Hacker News API
-    const response = await fetch("https://hacker-news.firebaseio.com/v0/jobstories.json");
-    if (!response.ok) throw new Error("Failed to fetch job IDs");
-
-    const jobIds = await response.json();
-    const jobPromises = jobIds.map(id => 
-        fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
-          .then(res => res.json())
-      );
-
-    const jobs = await Promise.all(jobPromises);
-    
-    // Clear loading state and render jobs
-    cardsContainer.innerHTML = '';
-    
-    jobs.forEach(job => {
-      if (job && job.title) { // Check if job exists and has title
-        const cardHTML = createJobCard(job);
-        cardsContainer.innerHTML += cardHTML;
-      }
-    });
-    
-    // Reapply mouse effects after adding new cards
-    setupMouseEffects();
-    
-  } catch (error) {
-    console.error('Error fetching jobs:', error);
-    cardsContainer.innerHTML = '<div class="error">Failed to load jobs. Please try again later.</div>';
-  }
-};
-
-// Function to parse company and role from HN job title
+// Function to parse company and role from job title
 const parseJobTitle = (title) => {
   const parts = title.split('is hiring');
   return {
     company: parts[0].trim(),
-    role: parts[1] ? parts[1].trim() : 'Software Engineer' // Default professional role
+    role: parts[1] ? parts[1].trim() : 'Software Engineer'
   };
 };
 
-// Function to create job card HTML
+// Improved function to validate URL
+const isValidUrl = (url) => {
+  if (!url) return false;
+  try {
+    new URL(url);
+    return true;
+  } catch (e) {
+    return false;
+  }
+};
+
+// Enhanced function to create job card HTML
 const createJobCard = (job) => {
   const { company, role } = parseJobTitle(job.title);
   const currentDate = new Date();
   const closingDate = new Date(currentDate);
-  closingDate.setDate(currentDate.getDate() + 10); // Set closing date to 10 days from now
+  closingDate.setDate(currentDate.getDate() + 10);
   
-  // Determine job type (fallback to "Full Time")
   const jobType = job.text && job.text.toLowerCase().includes("part-time") ? "Part Time" : "Full Time";
-  
-  // Extract a short preview of job description if available
   const jobDescriptionPreview = job.text ? job.text.split(" ").slice(0, 7).join(" ") + '...' : 'Apply to learn more';
 
-  // Get company logo (fallback to default image)
-  const companyLogo = job.url ? `https://logo.clearbit.com/${new URL(job.url).hostname}` : "https://cdn-icons-png.flaticon.com/512/10839/10839543.png";
+  // Validate and process the URL
+  let jobUrl = '';
+  let companyLogo = 'https://cdn-icons-png.flaticon.com/512/10839/10839543.png';
+  
+  if (isValidUrl(job.url)) {
+    jobUrl = job.url;
+    try {
+      const urlObj = new URL(job.url);
+      companyLogo = `https://logo.clearbit.com/${urlObj.hostname}`;
+    } catch (e) {
+      // Keep default logo if URL parsing fails
+    }
+  }
 
   return `
     <div class="card">
       <div class="card-content">
-        <div class="card-image">
-          <i class="fa-duotone fa-apartment"></i>
-        </div>
         <div class="card-info-wrapper">
           <div class="card-info">
-            <i class="fa-duotone fa-apartment"></i>
             <div class="card-info-title">
               <img
                 src="${companyLogo}"
@@ -222,7 +164,10 @@ const createJobCard = (job) => {
               <p class="experience">Posted: ${new Date(job.time * 1000).toLocaleDateString()}</p>
               <p class="closing-date">Application Closing: ${closingDate.toLocaleDateString()}</p>
               <p class="job-description-preview">${jobDescriptionPreview}</p>
-              <a href="${job.url}" target="_blank" class="apply-btn">Apply Now</a>
+              ${jobUrl ? 
+                `<a href="${jobUrl}" target="_blank" rel="noopener noreferrer" class="apply-btn">Apply Now</a>` : 
+                `<button class="apply-btn" style="opacity:0.7;cursor:not-allowed" onclick="alert('Application link not available for this position.')">Apply Now</button>`
+              }
             </div>
           </div>
         </div>
@@ -231,9 +176,44 @@ const createJobCard = (job) => {
   `;
 };
 
-// New function to setup job search
+// Enhanced jobs fetching function
+const fetchJobs = async () => {
+  const cardsContainer = document.getElementById("cards");
+  
+  try {
+    cardsContainer.innerHTML = '<div class="loader">Loading jobs...</div>';
+    
+    const response = await fetch("https://hacker-news.firebaseio.com/v0/jobstories.json");
+    if (!response.ok) throw new Error("Failed to fetch job IDs");
+
+    const jobIds = await response.json();
+    const jobPromises = jobIds.map(id => 
+      fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
+        .then(res => res.json())
+        .catch(err => null) // Handle individual job fetch failures gracefully
+    );
+
+    const jobs = await Promise.all(jobPromises);
+    
+    cardsContainer.innerHTML = '';
+    
+    jobs.forEach(job => {
+      if (job && job.title) {
+        const cardHTML = createJobCard(job);
+        cardsContainer.innerHTML += cardHTML;
+      }
+    });
+    
+    setupMouseEffects();
+    
+  } catch (error) {
+    console.error('Error fetching jobs:', error);
+    cardsContainer.innerHTML = '<div class="error">Failed to load jobs. Please try again later.</div>';
+  }
+};
+
+// Setup job search functionality
 const setupJobsSearch = () => {
-  // Add search input to the DOM
   const searchContainer = document.createElement('div');
   searchContainer.className = 'search-container';
   searchContainer.innerHTML = `
@@ -244,23 +224,20 @@ const setupJobsSearch = () => {
       class="search-input"
     >
     <select class="filter-select" id="location-filter">
-  <option value="">All Locations</option>
-  <option value="remote">Remote</option>
-  <option value="ind">India</option>
-  <option value="us">United States</option>
-  <option value="can">Canada</option>
-  <option value="au">Australia</option>
-  <option value="ger">Germany</option>
-  <option value="fra">France</option>
-</select>
-
+      <option value="">All Locations</option>
+      <option value="remote">Remote</option>
+      <option value="ind">India</option>
+      <option value="us">United States</option>
+      <option value="can">Canada</option>
+      <option value="au">Australia</option>
+      <option value="ger">Germany</option>
+      <option value="fra">France</option>
+    </select>
   `;
   
-  // Insert search before the cards container
   const cardsSection = document.getElementById('cards').parentElement;
   cardsSection.insertBefore(searchContainer, document.getElementById('cards'));
   
-  // Add search functionality
   const searchInput = document.getElementById('jobSearch');
   let debounceTimer;
   
@@ -268,28 +245,29 @@ const setupJobsSearch = () => {
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(() => {
       const searchTerm = e.target.value.toLowerCase();
+      const locationFilter = document.getElementById('location-filter').value.toLowerCase();
       const cards = document.querySelectorAll('.card');
       
       cards.forEach(card => {
         const cardText = card.textContent.toLowerCase();
-        card.style.display = cardText.includes(searchTerm) ? 'block' : 'none';
+        const matchesSearch = cardText.includes(searchTerm);
+        const matchesLocation = locationFilter === '' || cardText.includes(locationFilter);
+        card.style.display = (matchesSearch && matchesLocation) ? 'block' : 'none';
       });
     }, 300);
   });
 
-  // Add location filter functionality
   const locationFilter = document.getElementById("location-filter");
   locationFilter.addEventListener("change", () => {
+    const searchTerm = document.getElementById('jobSearch').value.toLowerCase();
     const location = locationFilter.value.toLowerCase();
     const cards = document.querySelectorAll(".card");
 
     cards.forEach((card) => {
-      const text = card.textContent.toLowerCase();
-      if (location === "" || text.includes(location)) {
-        card.style.display = "block";
-      } else {
-        card.style.display = "none";
-      }
+      const cardText = card.textContent.toLowerCase();
+      const matchesSearch = cardText.includes(searchTerm);
+      const matchesLocation = location === "" || cardText.includes(location);
+      card.style.display = (matchesSearch && matchesLocation) ? "block" : "none";
     });
   });
 };
