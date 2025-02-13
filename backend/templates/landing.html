@@ -5,7 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>CHR(3486)</title>
+    <title>CAREERTRIX</title>
+    <link rel="icon" type="image/png" href="{% static 'image/logo.png' %}" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
@@ -15,7 +16,7 @@
       .home-section {
           background: url("{% static 'image/hero-bg.png' %}") no-repeat center center / cover;
       }
-  </style>
+    </style>
   </head>
   <body>
     <!-- Shellbar Header -->
@@ -24,6 +25,10 @@
         <a href="#top" class="logo-link">
           <img src="{% static 'image/logo.png' %}" alt="Logo" class="logo" />
         </a>
+
+        <!-- Add these meta tags in your head section for better mobile rendering -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="theme-color" content="#222831">
         <h1 class="title">
           <span class="magic">
             <span class="magic-star">
@@ -57,10 +62,12 @@
             <li><a href="#mock-interview">Mock Interview</a></li>
             <li><a href="#mentorship">Mentorship</a></li>
             <li><a href="#about-us">About Us</a></li>
+            <li><a href="{% url 'signin' %}"   class="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a></li>
           </ul>
         </nav>
-        <!-- Login Button -->
-        <a href="{% url 'signin' %}"   class="login-btn">Login</a>
+        <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu">
+          <i class="fas fa-bars"></i>
+        </button>
       </div>
     </header>
 
@@ -117,7 +124,7 @@
     <!-- Sections for Navigation -->
     <section id="roadmap" class="roadmap-section fade-in">
       <div class="roadmap-content">
-        <div class="roadmap-text">
+        <div class="roadmap-text section-text">
           <h2>Personalized Career Roadmap</h2>
           <p>
             Based on your current job, qualifications, and career aspirations,

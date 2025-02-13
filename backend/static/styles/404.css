@@ -179,3 +179,21 @@
     transform: scale(1.2);
   }
   
+  @media (max-width: 768px) {
+    .btn {
+      width: 8em; /* Reduce width */
+      height: 3em; /* Reduce height */
+      border-radius: 2em; /* Adjust border radius */
+      gap: 8px; /* Reduce spacing */
+      margin-top: 200px;
+    }
+  
+    .text {
+      font-size: small; /* Adjust text size */
+    }
+  
+    .sparkle {
+      transform: scale(0.8); /* Scale down the sparkle icon */
+    }
+  }
+  

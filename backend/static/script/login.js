@@ -6,36 +6,39 @@ const randomChar = () => chars[Math.floor(Math.random() * (chars.length - 1))],
 const card = document.querySelector(".card"),
       letters = card.querySelector(".card-letters");
 
-const handleOnMove = e => {
-  const rect = card.getBoundingClientRect(),
-        x = e.clientX - rect.left,
-        y = e.clientY - rect.top;
-
+const handleOnMove = (x, y) => {
   letters.style.setProperty("--x", `${x}px`);
   letters.style.setProperty("--y", `${y}px`);
+  letters.innerText = randomString(10000);
+};
 
-  letters.innerText = randomString(0);    
+// Check if the device supports touch (mobile)
+const isMobile = 'ontouchstart' in window;
+
+if (isMobile) {
+  // Mobile: Continuous loop for the effect
+  let x = 0, y = 0;
+  const speed = 0.0000000001; // Reduced speed for a smoother effect
+
+  const animate = () => {
+    x = (x + speed) % card.offsetWidth; // Move horizontally
+    y = (y + speed) % card.offsetHeight; // Move vertically
+    handleOnMove(x, y);
+    requestAnimationFrame(animate); // Loop
+  };
+
+  animate(); // Start the animation
+} else {
+  // Desktop: Use mouse/touch movement
+  card.onmousemove = e => handleOnMove(e.clientX - card.getBoundingClientRect().left, e.clientY - card.getBoundingClientRect().top);
+  card.ontouchmove = e => handleOnMove(e.touches[0].clientX - card.getBoundingClientRect().left, e.touches[0].clientY - card.getBoundingClientRect().top);
 }
-// Example: Assuming you have a method to handle errors
-function displayError(message) {
-    const messageContainer = document.querySelector('.message-container');
-    const errorMessage = document.createElement('li');
-    errorMessage.className = 'error';
-    errorMessage.textContent = message;
 
-    // Append to the message container
-    messageContainer.appendChild(errorMessage);
-    messageContainer.style.display = 'block'; // Ensure it is visible
-}
-
-card.onmousemove = e => handleOnMove(e);
-card.ontouchmove = e => handleOnMove(e.touches[0]);
-
+// Rest of your code remains unchanged
 const container = document.querySelector('.container');
 const SignInLink = document.querySelector('.SignInLink');
 const SignUpLink = document.querySelector('.SignUpLink');
 
-// Toggle between sign in and sign up
 SignUpLink.addEventListener('click', () => {
     container.classList.add('active');
 });
@@ -44,18 +47,35 @@ SignInLink.addEventListener('click', () => {
     container.classList.remove('active');
 });
 
-// Update time and date
 function updateTimeDate() {
-  const now = new Date();
-  const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-  const date = now.toLocaleDateString([], { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+    const now = new Date();
+    const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-  document.getElementById('time').textContent = time;
-  document.getElementById('date').textContent = date;
+    let date;
+
+    if (window.innerWidth <= 768) {
+        // Mobile view: Format as "TUE, FEB 11, 25"
+        const day = now.toLocaleDateString('en-US', { weekday: 'short' }).toUpperCase();
+        const month = now.toLocaleDateString('en-US', { month: 'short' }).toUpperCase();
+        const dayNum = now.getDate();
+        const year = now.getFullYear().toString().slice(-2);
+
+        date = `${day}, ${month} ${dayNum}, ${year}`;
+    } else {
+        // Default format for desktop
+        date = now.toLocaleDateString([], { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+    }
+
+    document.getElementById('time').textContent = time;
+    document.getElementById('date').textContent = date;
 }
 
+// Run on load and update every minute
 updateTimeDate();
-setInterval(updateTimeDate, 60000); // Update every minute
+setInterval(updateTimeDate, 60000);
+
+// Ensure the date format updates when resizing the screen
+window.addEventListener('resize', updateTimeDate);
 
 document.addEventListener('DOMContentLoaded', () => {
     const togglePassword = document.getElementById('togglePassword');
@@ -67,7 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const errorMessage = document.getElementById("error-message");
     const errorContainer = document.getElementById("error-container");
 
-    // Toggle password visibility for login and registration
     if (loginPasswordToggle && logPassword) {
         loginPasswordToggle.addEventListener('click', () => {
             const type = logPassword.getAttribute('type') === 'password' ? 'text' : 'password';
@@ -95,71 +114,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Function to show error messages
-    // Function to show error messages
-function showError(message) {
-    errorMessage.innerText = message;
-    errorContainer.style.display = 'block'; // Show the error message
-
-    // Optionally hide after some time
-    setTimeout(() => {
-        errorContainer.style.display = 'none'; // Hide after 5 seconds
-    }, 5000);
-}
-
-});
-
-
-/*
-    // Event listener for login form submission
-document.getElementById('loginForm').addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent the default form submission
-
-    const username = document.getElementById("logusername").value;
-    const password = document.getElementById("confirmPassword").value; // Use confirmPassword here
-
-    // Password pattern validation
-    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#])[A-Za-z\d@#]{8,}$/;
-    if (!passwordPattern.test(password)) {
-        showError("Password must be at least 8 characters long, contain a mix of uppercase, lowercase, numbers, and special characters (@ or #)");
-        return;
+    function showError(message) {
+        errorMessage.innerText = message;
+        errorContainer.style.display = 'block';
+        setTimeout(() => {
+            errorContainer.style.display = 'none';
+        }, 5000);
     }
-
 });
-
-
-
-
-    // Event listener for register form validation
-    document.getElementById('registerForm').addEventListener("submit", function(event) {
-        event.preventDefault(); // Prevent form submission
-
-        const email = document.getElementById("signemail").value;
-        const password = logPassword.value;
-        const reenterPassword = repeatPassword.value;
-
-        // Email validation
-        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|in)$/;
-        if (!emailPattern.test(email)) {
-            showError("Please enter a valid email address (example@domain.com or .in)");
-            return;
-        }
-
-        // Password validation (min 8 characters, upper, lower, number, special)
-        const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#])[A-Za-z\d@#]{8,}$/;
-        if (!passwordPattern.test(password)) {
-            showError("Password must be at least 8 characters long, contain a mix of uppercase, lowercase, numbers, and special characters (@ or #)");
-            return;
-        }
-
-        // Password match check
-        if (password !== reenterPassword) {
-            showError("Passwords do not match");
-            return;
-        }
-
-        // If all validation passes, submit the form
-        errorMessage.innerText = ""; // Clear error message
-        window.location.href = "user.html";
-    });
-}); */

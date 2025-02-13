@@ -4,7 +4,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>register</title>
+    <title>Registration</title>
+    <link rel="icon" type="image/png" href="{% static 'image/logo.png' %}" />
     <link rel="stylesheet" href="{% static 'styles/register.css' %}" />
     <link
       rel="stylesheet"
@@ -14,48 +15,52 @@
 
   <body>
     <header class="header" id="shell-bar">
-        <div class="container">
-          <a href="#top" class="logo-link">
-            <img src="{% static 'image/logo.png' %}" alt="Logo" class="logo" />
-          </a>
-          <h1 class="title">
-            <span class="magic">
-              <span class="magic-star">
-                <svg viewBox="0 0 512 512">
-                  <path
-                    d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z"
-                  />
-                </svg>
-              </span>
-              <span class="magic-star">
-                <svg viewBox="0 0 512 512">
-                  <path
-                    d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z"
-                  />
-                </svg>
-              </span>
-              <span class="magic-star">
-                <svg viewBox="0 0 512 512">
-                  <path
-                    d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z"
-                  />
-                </svg> </span
-              ><span class="magic-text"><a href="{% url 'home' %}">CAREERTRIX</a></span>
+      <div class="container">
+        <a href="#top" class="logo-link">
+          <img src="{% static 'image/logo.png' %}" alt="Logo" class="logo" />
+        </a>
+        <h1 class="title">
+          <span class="magic">
+            <span class="magic-star">
+              <svg viewBox="0 0 512 512">
+                <path
+                  d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z"
+                />
+              </svg>
             </span>
-          </h1>
-          <nav class="navbar">
-            <ul>
-              <li><h1>UPLOAD RESUME || FILL FORM DETAILS</h1></li>
-            </ul>
-          </nav>
-          <!-- Logout Button -->
-          <a href="{% url 'setting' %}" id="profile-user"
-          ><i class="fa fa-user-circle fa-2x"></i><br />{{ request.user.username }}</a
-        >
-          <a href="{% url 'signout' %}" class="logout-btn" style="margin-right: 50px;">Logout</a>
-        </div>
-        </div>
-      </header>
+            <span class="magic-star">
+              <svg viewBox="0 0 512 512">
+                <path
+                  d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z"
+                />
+              </svg>
+            </span>
+            <span class="magic-star">
+              <svg viewBox="0 0 512 512">
+                <path
+                  d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z"
+                />
+              </svg> </span
+            ><span class="magic-text"><a href="{% url 'home' %}">CAREERTRIX</a></span>
+          </span>
+        </h1>
+        <nav class="navbar">
+          <ul>
+            <li><a href="{% url 'home' %}">HOME</a></li>
+            <li><a href="{% url 'setting' %}">PROFILE</a></li>
+          </ul>
+        </nav>
+        <!-- Logout Button -->
+        <a id="profile-user">
+          <i class="fa fa-user-circle fa-2x"></i>
+        </a>
+        <a class="profile-user" style="margin-left: 15px;">
+          <span>{{ request.user.username }}</span>
+        </a>
+        <a href="{% url 'signout' %}" class="logout-btn" style="margin-right: 50px;">Logout</a>
+      </div>
+      </div>
+    </header>
       <div id="trailer">
         <i id="trailer-icon" class="fa-solid fa-upload"></i>
       </div>
@@ -81,7 +86,7 @@
       ></div>
       <div class="card" id="resume">
         <div class="card-content" style="margin-bottom: 25px;">
-          <h3 >FILE UPLOAD</h3>
+          <h3 class="no" >FILE UPLOAD</h3>
           <h1>Submit your RESUME to save time</h1>
           <label for="file-upload">Select your Resume:</label>
           <form
@@ -94,7 +99,7 @@
           <input type="hidden" name="check" id="check" value="resume">
           <input type="file" name="resume-upload" id="resume-upload" style="height: 50px; margin-bottom: 25px;" id="resume-upload" />
           <p style="margin-bottom: 25px;">
-            All datas shared here will only be used for user experince alone and
+            All details shared here will only be used for user experince alone and
             improve the accuracy of the results generated for the user.
           </p>
           <button type="submit">Submit</button>

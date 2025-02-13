@@ -120,11 +120,10 @@ body {
     transition: opacity 0.8s ease-in-out;
   }
   
-  
-  
   .header {
     background-color: #222831;
     color: #EEEEEE;
+    height: 84px;
     width: 100%;
     padding: 5px 20px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -140,6 +139,28 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
+    margin-top: 12.5px;
+  }
+  
+  /* Group logo and title together */
+  .logo-link, .title {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Push the navbar to the center */
+  .navbar {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Align the right-side elements (icon, username, logout button) */
+  #profile-user, .profile-user, .logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 15px;
   }
   
   .logo {
@@ -176,14 +197,16 @@ body {
   }
   
   .logout-btn {
-    background-color: #00ADB5;
+    background-color: #b50000;
     color: #EEEEEE;
     padding: 10px 20px;
     font-size: 20px;
-    width: 100px;
+    width: 70px;
     text-align: center;
     text-decoration: none;
     border-radius: 5px;
+    margin-right: 30px!important;
+    margin-left: 20px;
   }
   
   .logout-btn:hover {
@@ -328,6 +351,10 @@ body {
   h1, h2, h3, p {
     margin: 0rem;
   }
+
+  .profile-dropdown {
+    display: none;
+}
   
   .card {
     width: 700px;
@@ -348,9 +375,7 @@ body {
     opacity: 1;
     visibility: visible;
   }
-  
-  
-  
+    
   .card.show {
     opacity: 1;
     visibility: visible;
@@ -574,4 +599,298 @@ body {
       opacity: 1;
       transform: translateY(0);
   }
+/* Mobile-Responsive Header */
+@media (max-width: 768px) {
+  .header {
+    height: 50px;
+    padding: 0 15px;
+  }
+  .header .container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0;
+  }
+
+  .logo {
+    height: 35px;
+    width: auto;
+  }
+
+  .title {
+    font-size: 20px;
+    margin: 0;
+  }
+
+  /* Hide initial nav items and logout */
+  .navbar ul,
+  .logout-btn {
+    display: none;
+  }
+
+  /* Profile dropdown styles */
+  .profile-dropdown {
+    position: relative;
+  }
+
+  #profile-user {
+    font-size: 14px;
+    color: #EEEEEE;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .profile-dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 45px;
+    background-color: #222831;
+    min-width: 150px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    z-index: 1000;
+  }
+
+  .profile-dropdown-content.show {
+    display: block;
+  }
+
+  .profile-dropdown-content a {
+    color: #EEEEEE;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+  }
+
+  .profile-dropdown-content a:hover {
+    background-color: #00ADB5;
+  }
   
+  /* Interactable adjustments */
+  .interactable {
+    height: 400px; /* Initial height */
+    margin-top: 60px;
+    aspect-ratio: auto;
+    width: clamp(120px, 40vmin, 600px);
+    transition: height 0.3s ease; /* Smooth transition */
+  }
+
+  .interactable.left {
+    transform: translateY(-70%); /* Move 5% from the left */
+  }
+  
+  .interactable.right {
+    transform: translateY(-70%); /* Move 5% from the right */
+  }
+  
+  .interactable.reset {
+    transform: translateY(0); /* Reset to original position */
+  }
+
+  .form-section {
+    position: relative;
+  }
+
+  /* Card adjustments */
+  .card {
+    width: 95%;
+    margin-top: 20px;
+    height: calc(100vh - 660px); /* Adjust height based on interactable and other elements */
+    overflow-y: auto; /* Enable scrolling */
+    display: flex;
+    flex-direction: column;
+}
+
+  .card-content {
+    padding: 1rem;
+    padding-left: 0%;
+    overflow: scroll;
+    margin-bottom: 10px;
+    overflow-x: hidden; /* Hides any overflowing content */
+  text-overflow: ellipsis; /* Adds "..." if text overflows (optional) */
+  white-space: nowrap; /* Prevents text from wrapping (optional) */
+  word-wrap: break-word; /* Ensures long words break into the next line */
+  max-width: 100%;
+  }
+
+  .card.visible{
+    height: 700px;
+  }
+
+  .card-content > h1 {
+    font-size: 1.4rem;
+    left: 0%;
+  }
+
+  .card-content > h3 {
+    font-size: 0.7rem;
+    margin-top: 300px;
+  }
+
+  .card-content > p {
+    font-size: 0.9rem;
+  }
+  .card-content p {
+    width: 300px;
+    margin-left: 40px;
+  }
+  .card-content button {
+    width: 300px;
+    margin-left: 25px;
+  }
+
+  .card-content > h3.no{
+    margin-top: 20px;
+  }
+
+  /* Form adjustments */
+  .form-section {
+    margin-bottom: 12px;
+    margin-left: 15px;
+  }
+
+  .form-section label {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+
+  form label,
+  form h1,
+  form p {
+    color: #EEEEEE;
+    font-size: 18px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  input[type="file"],
+  input[type="date"],
+  input[type="email"],
+  select {
+    font-size: 14px;
+    padding: 8px;
+    margin-bottom: 8px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 10px 16px;
+    width: auto;
+    min-width: 120px;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 380px) {
+  .title {
+    font-size: 18px;
+  }
+
+  .card-content > h1 {
+    font-size: 1.2rem;
+  }
+
+  input[type="file"] {
+    font-size: 15px;
+    height: 70px;
+  }
+}
+
+/* Mobile Header and Navigation */
+@media (max-width: 768px) {
+  .header {
+    height: 50px;
+    padding: 0 15px;
+  }
+
+  .profile-user {
+    display: none;
+}
+
+  .header .container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 330px;
+    padding: 0;
+    margin-top: 0px;
+  }
+
+  .logo {
+    height: 35px;
+    width: auto;
+  }
+
+  .title {
+    font-size: 1.5rem;
+    margin: 0;
+  }
+
+  /* Hide default nav and logout */
+  .navbar, 
+  .logout-btn {
+    display: none;
+  }
+
+  /* Profile Menu Styles */
+  .profile-menu {
+    position: relative;
+  }
+
+  #profile-user {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #EEEEEE;
+    text-decoration: none;
+  }
+
+  .profile-dropdown {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: #222831;
+    min-width: 150px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    display: none;
+    z-index: 1000;
+  }
+
+  .profile-dropdown.active {
+    display: block;
+  }
+
+  .profile-dropdown a {
+    color: #EEEEEE;
+    padding: 12px 15px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+  }
+
+  .profile-dropdown a:hover {
+    background-color: #00ADB5;
+  }
+
+  /* Hide mouse trailer on mobile */
+  #trailer {
+    display: none !important;
+  }
+
+  /* Card position adjustment */
+  .card {
+    margin-top: 650px;
+    height: 700px;
+  }
+}
+

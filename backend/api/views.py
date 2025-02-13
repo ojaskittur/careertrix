@@ -108,7 +108,6 @@ def home(request):
             gemini_response = get_gemini_response(input_text)
 
             GeminiResponse.objects.create(user=request.user, response=gemini_response, field=job)
-            print(gemini_response)
         return render(request, 'roadmap.html', {'gemini_response': gemini_response})
 
     return render(request, 'home.html', {'previous_responses': previous_responses})

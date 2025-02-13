@@ -166,3 +166,118 @@ const enhance = id => {
 
 enhance("channel-link");
 
+// Add touch event handling
+interactables.forEach(item => {
+    item.addEventListener('touchend', (e) => {
+      e.preventDefault(); // Prevent double-firing of events
+      const type = item.dataset.type;
+      const otherItem = Array.from(interactables).find(i => i !== item);
+      
+      if (type === "resume") {
+        showSection(resumeUpload, registrationForm, item, otherItem);
+        toggleCardVisibility("resume", true);
+        toggleCardVisibility("form", false);
+      } else if (type === "form") {
+        showSection(registrationForm, resumeUpload, item, otherItem);
+        toggleCardVisibility("form", true);
+        toggleCardVisibility("resume", false);
+      }
+    });
+  });
+  
+  // Add window resize handler for responsive adjustments
+  window.addEventListener('resize', () => {
+    resetPositions();
+    // Hide trailer on mobile
+    if (window.innerWidth <= 768) {
+      trailer.style.display = 'none';
+    } else {
+      trailer.style.display = 'block';
+    }
+  });
+  
+  document.addEventListener('DOMContentLoaded', function() {
+  // Profile dropdown functionality
+  const profileUser = document.getElementById('profile-user');
+  const container = document.querySelector('.container');
+  
+  // Create dropdown menu
+  const dropdown = document.createElement('div');
+  dropdown.className = 'profile-dropdown';
+  dropdown.innerHTML = `
+    <a href="{% url 'home' %}" style="margin-left:30px; margin-bottom:5px;" >
+        <i class="fas fa-home"></i> Home
+      </a>
+      <a href="{% url 'profile' %}" style="margin-left:30px; margin-bottom:5px;" >
+        <i class="fas fa-user"></i> Profile
+      </a>
+      <a href="{% url 'signout' %}" style="margin-left:30px; margin-bottom:5px;" class="logout-btn">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </a>
+  `;
+  
+  // Create profile menu container
+  const profileMenu = document.createElement('div');
+  profileMenu.className = 'profile-menu';
+  
+  // Restructure DOM for profile menu
+  profileUser.parentNode.insertBefore(profileMenu, profileUser);
+  profileMenu.appendChild(profileUser);
+  profileMenu.appendChild(dropdown);
+  
+  // Toggle dropdown
+  profileUser.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    dropdown.classList.toggle('active');
+  });
+  
+  // Close dropdown when clicking outside
+  document.addEventListener('click', function(e) {
+    if (!profileMenu.contains(e.target)) {
+      dropdown.classList.remove('active');
+    }
+  });
+
+  // Interactable functionality
+  const interactables = document.querySelectorAll('.interactable');
+  
+  interactables.forEach(item => {
+    item.addEventListener('click', () => {
+      const type = item.dataset.type;
+      const otherItem = Array.from(interactables).find(i => i !== item);
+      
+      // Add active class for height change
+      item.classList.add('active');
+      if (otherItem) otherItem.classList.add('active');
+      
+      if (type === "resume") {
+        showSection(resumeUpload, registrationForm, item, otherItem);
+        toggleCardVisibility("resume", true);
+        toggleCardVisibility("form", false);
+      } else if (type === "form") {
+        showSection(registrationForm, resumeUpload, item, otherItem);
+        toggleCardVisibility("form", true);
+        toggleCardVisibility("resume", false);
+      }
+    });
+  });
+
+  // Update showSection function to handle mobile transitions
+  const showSection = (sectionToShow, sectionToHide, activeItem, inactiveItem) => {
+    resetPositions();
+    
+    setTimeout(() => {
+      inactiveItem.classList.add(inactiveItem.dataset.type === "form" ? "right" : "left");
+      activeItem.classList.add("hidden");
+      
+      setTimeout(() => {
+        sectionToHide.classList.remove("visible");
+        sectionToHide.classList.add("hidden");
+        
+        sectionToShow.classList.remove("hidden");
+        sectionToShow.classList.add("visible");
+      }, 800);
+    }, 800);
+  };
+});

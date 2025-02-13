@@ -1,75 +1,73 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings</title>
+    <link rel="icon" type="image/png" href="{% static 'image/logo.png' %}" />
     <link rel="stylesheet" href="{% static 'styles/settings.css' %}">
-    <script src="{% static 'script/settings.js' %}" defer></script> <!-- Link to the JavaScript file -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
 </head>
-
-
 <body>
-    <header class="header" id="shell-bar">
-        <div class="container">
-          <a href="#top" class="logo-link">
-            <img src="{% static 'image/logo.png' %}" alt="Logo" class="logo" />
-          </a>
-          <h1 class="title">
-            <span class="magic">
-              <span class="magic-star">
-                <svg viewBox="0 0 512 512">
-                  <path
-                    d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z"
-                  />
-                </svg>
-              </span>
-              <span class="magic-star">
-                <svg viewBox="0 0 512 512">
-                  <path
-                    d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z"
-                  />
-                </svg>
-              </span>
-              <span class="magic-star">
-                <svg viewBox="0 0 512 512">
-                  <path
-                    d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z"
-                  />
-                </svg> </span
-              ><span class="magic-text">CAREERTRIX</span>
-            </span>
-          </h1>
-          <nav class="navbar">
-            <ul>
-              <li><a href="{% url 'home' %}">Home</a></li>
-              <li><a href="#job-tracking">Job Tracking</a></li>
-              <li><a href="#job-alerts">Job Alerts</a></li>
-              <li><a href="#mock-interview">Mock Interview</a></li>
-              <li><a href="{% url 'registration' %}">Your Details</a></li>
-            </ul>
-          </nav>
-          <!-- Logout Button -->
-          <a href="" id="profile-user"
-          style="text-decoration: none;" ><i class="fa fa-user-circle fa-2x"></i><br/><h3>{{ request.user.username }}</h3></a
-          >
-          <a href="{% url 'signout' %}" class="logout-btn">Logout</a>
-        </div>
-        </div>
-      </header>
+  <header class="header" id="shell-bar">
+    <div class="container">
+      <a href="#top" class="logo-link">
+        <img src="{% static 'image/logo.png' %}" alt="Logo" class="logo" />
+      </a>
+      <h1 class="title">
+        <span class="magic">
+          <span class="magic-star">
+            <svg viewBox="0 0 512 512">
+              <path
+                d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z"
+              />
+            </svg>
+          </span>
+          <span class="magic-star">
+            <svg viewBox="0 0 512 512">
+              <path
+                d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z"
+              />
+            </svg>
+          </span>
+          <span class="magic-star">
+            <svg viewBox="0 0 512 512">
+              <path
+                d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z"
+              />
+            </svg> </span
+          ><span class="magic-text"><a href="{% url 'home' %}">CAREERTRIX</a></span>
+        </span>
+      </h1>
+      <nav class="navbar">
+        <ul>
+          <li><a href="{% url 'home' %}">HOME</a></li>
+          <li><a href="{% url 'registration' %}">REGISTRATION</a></li>
+        </ul>
+      </nav>
+      <!-- Logout Button -->
+      <a id="profile-user">
+        <i class="fa fa-user-circle fa-2x"></i>
+      </a>
+      <a class="profile-user" style="margin-left: 15px;">
+        <span>{{ request.user.username }}</span>
+      </a>
+      <a href="{% url 'signout' %}" class="logout-btn" style="margin-right: 50px;">Logout</a>
+    </div>
+    </div>
+  </header>
       <div class="container">
         <!-- Side Navigation Bar -->
         <aside class="side-nav">
           <ul>
-            <li>
-              <a class="link" href="#profile-info">Profile Info</a>
-            </li>
+            <li><a class="link" href="#profile-info">Profile Info</a></li>
             <li><a class="link" href="#change-password">Change Password</a></li>
             <li><a class="link" href="#privacy">Privacy</a></li>
             <li><a class="link" href="#display-preferences">Display Preferences</a></li>
-            <li><a class="link" href="#connections">Connections</a></li>
           </ul>
         </aside>
   
@@ -93,14 +91,14 @@
                 <option value="female">Female</option>
             </select><br>
             <button type="button" class="accent-button">Re-enter Register Page</button>
-            <button type="submit" class="accent-button">Save Changes</button>
+            <button type="submit" class="accent-button"><i class="fas fa-save"></i> Save Changes</button>
         </form>
     </div>
 
     <div class="section-box" id="change-password">
         <h3>Change Password</h3>
         <form method="post" accept="">
-            {% csrf_token %}
+          {% csrf_token %}
             <input type="hidden" name="form_type" value="password_change">
             <label for="current-password">Enter current password:</label>
             <input type="password" id="current-password" name="current-password"><br>
@@ -108,7 +106,7 @@
             <input type="password" id="new-password" name="new-password"><br>
             <label for="confirm-password">Confirm password:</label>
             <input type="password" id="confirm-password" name="confirm-password"><br>
-            <button type="submit" class="accent-button">Save Changes</button>
+            <button type="submit" class="accent-button"><i class="fas fa-save"></i> Save Changes</button>
         </form>
     </div>
 
@@ -143,7 +141,7 @@
             </label>
             <br>
             <br>
-            <button type="button" class="accent-button">Save Changes</button>
+            <button type="button" class="accent-button"><i class="fas fa-save"></i> Save Changes</button>
         </div>
     </div>
 
@@ -161,29 +159,10 @@
             <option value="ES">Spanish</option>
         </select>
     </div>
-
-    <div class="section-box" id="connections">
-        <h3>Connections</h3>
-        <p>Connect your accounts to enhance your networking experience.</p>
-        <div class="connection-option" id="google">
-            <h4>Google Connections</h4>
-            <p>Connect your Google account to access features like email and calendar integration.</p>
-            <button type="button" class="accent-button">Connect to Google</button>
-            <button type="button" class="accent-button">Disconnect from Google</button>
-        </div>
-        <br>
-        <div class="connection-option" id="linkedin">
-            <h4>LinkedIn Connections</h4>
-            <p>Connect your LinkedIn account to expand your professional network and access job opportunities.</p>
-            <button type="button" class="accent-button">Connect to LinkedIn</button>
-            <button type="button" class="accent-button">Disconnect from LinkedIn</button>
-        </div>
-    </div>
     </main>
     </div>
     <script src="https://cdn.botpress.cloud/webchat/v2.1/inject.js"></script>
-      <script src="https://mediafiles.botpress.cloud/3177457b-276e-453f-abbe-3fe6165f9843/webchat/v2.1/config.js"></script>
+    <script src="https://mediafiles.botpress.cloud/3177457b-276e-453f-abbe-3fe6165f9843/webchat/v2.1/config.js"></script>
     <script src="{% static 'script/settings.js' %}"></script>
-</body>
-
+  </body>
 </html>

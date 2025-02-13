@@ -2,11 +2,9 @@
  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
 body {
-    height: 100vh;
+    min-height: 100vh;
     font-family: 'Poppins', sans-serif;
     width: 100vw;
-    display: grid;
-    place-items: center;
     background-color: #EEEEEE;
     margin: 0px;
     padding: 0;
@@ -20,6 +18,12 @@ body {
     box-sizing: border-box;
 }
 
+  /* Container to align buttons side by side */
+  .roadmap-buttons-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem; /* Adds space between buttons */
+}
 
 .header {
   background-color: #222831;
@@ -40,6 +44,26 @@ body {
   justify-content: space-between;
   align-items: center;
   width: 100%;
+}
+
+/* Group logo and title together */
+.logo-link, .title {
+  display: flex;
+  align-items: center;
+}
+
+/* Push the navbar to the center */
+.navbar {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
+/* Align the right-side elements (icon, username, logout button) */
+#profile-user, .profile-user, .logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
 .logo {
@@ -76,20 +100,25 @@ body {
 }
 
 .logout-btn {
-    background-color: #b50000;
-    color: #EEEEEE;
-    padding: 10px 20px;
-    font-size: 20px;
-    width: 100px;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-right: 30px;
+  background-color: #b50000;
+  color: #EEEEEE;
+  padding: 10px 20px;
+  font-size: 20px;
+  width: 100px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-right: 10px!important;
+  margin-left: 20px;
 }
 
 .logout-btn:hover {
     background-color: rgb(255, 85, 0);
 }
+
+.profile-dropdown {
+  display: none;
+ }
 
 /* Fade-in Animation */
 .fade-in {
@@ -234,7 +263,6 @@ html {
   list-style-type: none;
   padding: 0;
   margin-top: 100px;
-  top: 200px;
 }
 
 .side-nav li {
@@ -263,13 +291,14 @@ html {
 
 /* Job and Skill Selection Section */
 .job-skill-selection {
-  background-color: #FFFFFF;
+  background-color: #000000;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   margin-top: 40px;
   display: flexbox;
   height: 450px;
+  color: white;
 }
 
 .job-skill-selection h2 {
@@ -290,117 +319,6 @@ input[type="number"] {
   margin-bottom: 20px;
   border: 1px solid #393E46;
   border-radius: 5px;
-}
-
-.career-predictor {
-  background-color: #FFFFFF;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 40px;
-  display: flexbox;
-  height: auto;
-  width: auto;
-  overflow-x: hidden;
-}
-.career-predictor h2{
-  color: #00ADB5;
-}
-
-.career-predictor input{
-  width: 300px;
-  align-items: center;
-}
-
-.career-predictor td {
-  padding: 10px;
-}
-
-table {
-  border-collapse: separate;
-  text-indent: initial;
-  border-spacing: 2px;
-}
-
-td {
-  display: table-cell;
-  vertical-align: inherit;
-  unicode-bidi: isolate;
-}
-
-.career-predictor table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.roadmap-section {
-  background-color: #FFFFFF;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 40px;
-  display: none; /* Initially hidden */
-  height: auto;
-  width: auto;
-}
-
-.roadmap-iframe {
-  width: 2000px;
-  height: 500px;
-  border: none;
-}
-
-/* Roadmap Text */
-.roadmap-text {
-  max-width: 528px;
-  margin-right: 100px;
-  padding: auto;
-}
-
-.roadmap-text h2 {
-  font-size: 36px;
-  font-weight: 600;
-  margin-bottom: 20px;
-  color: #00ADB5;
-}
-
-.roadmap-text p {
-  font-size: 18px;
-  line-height: 1.6;
-  color: #EEEEEE;
-}
-
-/* Career Recommendation Card */
-.career-recommendation {
-  background-color: #222831;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 40px;
-}
-
-.career-recommendation h2 {
-  color: #00ADB5;
-}
-
-.career-recommendation p {
-  margin: 10px 0;
-  color: #EEEEEE;
-}
-
-.job-details {
-  margin: 20px 0;
-}
-
-button.see-more {
-  background-color: #00ADB5;
-  color: #FFFFFF;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 20px;
-  cursor: pointer;
-  display: block;
-  margin: 0 auto;
 }
 
 .link {
@@ -531,9 +449,10 @@ p {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;  
-  max-width: 916px;
+  width: 916px;
   height: 900px;
   left: 50px;
+  margin-left: 12.5px;
 }
 
 #cards:hover > .card::after {
@@ -699,3 +618,495 @@ p {
     margin-top: 4px;
   }
 }
+
+@media (max-width: 768px) {
+  /* Header modifications with gradient */
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    height: 60px;
+    background: linear-gradient(45deg, #222831, #393E46);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .header .container {
+    height: 100%;
+    padding: 0 16px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    animation: slideInFromTop 0.5s ease-out;
+  }
+
+  .logo {
+    height: 32px;
+    width: auto;
+    transition: transform 0.3s ease;
+  }
+
+  .logo:hover {
+    transform: scale(1.1);
+  }
+
+  .title {
+    font-size: 1.125rem;
+    margin: 0;
+    line-height: 1.4;
+    background: linear-gradient(45deg, #00ADB5, #4FC3F7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: pulse 2s infinite;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .navbar, 
+  .logout-btn,
+  .profile-user span {
+    display: none;
+  }
+
+  /* Profile icon and dropdown with enhanced styling */
+  #profile-user {
+    cursor: pointer;
+    position: relative;
+    z-index: 1001;
+    transition: transform 0.3s ease;
+  }
+
+  #profile-user:hover {
+    transform: scale(1.1);
+  }
+
+  .profile-dropdown {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background: linear-gradient(135deg, #222831, #2C3440);
+    width: 160px;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    z-index: 999;
+    transform-origin: top right;
+    display: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .profile-dropdown.active {
+    display: block;
+    animation: dropdownFadeIn 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .profile-dropdown a {
+    color: #EEEEEE;
+    padding: 12px 15px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .profile-dropdown a:hover {
+    background: linear-gradient(45deg, #00ADB5, #008B8B);
+    transform: translateX(5px);
+  }
+
+  /* Enhanced bottom navigation bar */
+  .side-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 64px;
+    background: #222831;
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+    padding: 0;
+    margin: 0;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .side-nav ul {
+    display: flex;
+    flex-direction: row;
+    margin-top: 7px;
+    padding: 0 16px;
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .side-nav li {
+    margin: 0;
+  }
+
+  .side-nav .link {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 12px;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #EEEEEE;
+    text-decoration: none;
+    background: linear-gradient(45deg, #393E46, #454E59);
+    transition: all 0.2s ease;
+  }
+
+  .side-nav .link:hover,
+  .side-nav .link.active {
+    background: linear-gradient(45deg, #000000, #000000);
+    transform: translateY(-2px);
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    padding: 16px;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+
+  .trending-jobs {
+    width: 100%;
+    max-width: 100%;
+    height: 410%;
+    margin: 16px 0;
+    padding: 16px;
+  }
+
+  .content-area {
+    margin-top: 60px;
+    margin-bottom: 64px; /* Add bottom margin to prevent overlap with side-nav */
+    padding: 16px;
+    width: 100%;
+    min-height: calc(100vh - 124px);
+    overflow-x: hidden;
+  }
+  
+  #cards {
+    /* Reset desktop styles */
+    width: 100%;
+    height: auto;
+    left: 0;
+    margin: 0;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    position: static;
+  }
+
+  .card {
+    /* Reset desktop styles */
+    width: 100%;
+    left: 0;
+    top: 0;
+    height: 400px;
+    bottom: 0;
+    margin: 0;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    cursor: default;
+  }
+
+  .card::before,
+  .card::after {
+    display: none;
+  }
+  #cards:hover > .card::after {
+    opacity: 0;
+  }
+
+  .card:hover::before {
+    opacity: 0;
+  }
+  /* Hide icons on mobile */
+  .card-image,
+  .card-info i {
+    display: none;
+  }
+
+  .card-content {
+    /* Reset desktop styles */
+    position: static;
+    inset: 0;
+    background: transparent;
+    padding: 20px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .card-info-wrapper {
+    /* Reset desktop styles */
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .card-info-title {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .company-logo {
+    width: 64px;
+    height: 64px !important;
+    object-fit: contain;
+    border-radius: 8px;
+    background: #f5f5f5;
+    padding: 8px;
+  }
+
+  .card-info-title h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #00ADB5;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .company-name {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #fefeff;
+    margin: 0;
+  }
+
+  .job-type {
+    font-size: 0.875rem;
+    color: #10c2cb;
+    margin: 0;
+  }
+
+  .experience,
+  .closing-date {
+    font-size: 0.875rem;
+    color: #dddada;
+    margin: 0;
+  }
+
+  .apply-btn {
+    display: inline-block;
+    background: linear-gradient(45deg, #00ADB5, #008B8B);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    margin-top: 16px;
+    text-align: center;
+    width: auto;
+    min-width: 120px;
+    max-width: 200px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .apply-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 173, 181, 0.3);
+  }
+  
+  /* Container to prevent overflow */
+  .container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    padding: 0;
+    margin: 0;
+  }
+
+  .job-skill-selection {
+    width: 100%;
+    padding: 20px 16px;
+    background: #000000;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 24px;
+    margin-top: 24px;
+  }
+
+  .job-skill-selection h2 {
+    color: #009999;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 16px 0 16px 0;
+    line-height: 1.4;
+  }
+
+  .job-skill-selection form {
+    width: 100%;
+  }
+
+  #col {
+    width: 100%;
+  }
+
+  #col label {
+    display: block;
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+
+  #job-dropdown {
+    width: 100%;
+    height: 48px;
+    padding: 0 16px;
+    border: 2px solid #000000;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #222831;
+    background: #fff;
+    transition: border-color 0.3s ease;
+  }
+
+  #job-dropdown:focus {
+    border-color: #00ADB5;
+    outline: none;
+  }
+
+  #generate-button {
+    width: 100%;
+    height: 48px;
+    background: linear-gradient(45deg, #00ADB5, #008B8B);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  #generate-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 173, 181, 0.3);
+  }
+
+  #generate-button:active {
+    transform: translateY(0);
+  }
+
+  /* Previous Roadmaps Section */
+  .roadmap-buttons-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  .roadmap-buttons-container form {
+    width: 100%;
+  }
+
+  .roadmap-buttons-container #generate-button {
+    width: 100%;
+    background: linear-gradient(45deg, #393E46, #454E59);
+    margin: 0;
+  }
+
+  /* Add spacing between sections */
+  .job-skill-selection > h2:nth-of-type(2) {
+    margin-top: 32px;
+    margin-bottom: 16px;
+  }
+
+  /* Remove extra spacing from br tags */
+  .job-skill-selection br {
+    display: none;
+  }
+
+/* Fix iOS safe areas */
+@supports (padding: max(0px)) {
+  .header {
+    padding-top: env(safe-area-inset-top);
+    height: calc(60px + env(safe-area-inset-top));
+  }
+  
+  .side-nav {
+    margin-top: 480px;
+    padding-bottom: env(safe-area-inset-bottom);
+    height: calc(64px + env(safe-area-inset-bottom));
+  }
+  
+  .content-area {
+    padding-top: calc(16px + env(safe-area-inset-top));
+    padding-bottom: calc(16px + env(safe-area-inset-bottom));
+  }
+}
+
+
+}
+/* Animations */
+@keyframes slideInFromTop {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes cardHover {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-5px);
+  }
+ }

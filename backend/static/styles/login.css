@@ -1,14 +1,11 @@
 :root {
     --background-rgb: 2 6 23;
     --background-light-rgb: 30 41 59;
-    
     --border-rgb: 255 255 255;
     --border: 1px solid rgb(var(--border-rgb) / 20%);
-    
     --hyperplexed-main-rgb: 41 121 255;
     --hyperplexed-main-light-rgb: 56 182 255;
     --hyperplexed-secondary-rgb: 42 252 152;
-      
     --font-size: 0.7rem;
   }
   
@@ -113,8 +110,6 @@
     }
   }
 
-
-
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
 * {
@@ -133,6 +128,11 @@ body {
     background-color: #222831;
 }
 
+.logo {
+    height: 30px;
+    width: 40px;
+    margin-right: 10px;
+    }
 
 .container {
     position: relative;
@@ -150,7 +150,6 @@ body {
     padding: 20px;
     border-radius: 10px; /* Adjust if needed */
   }
-
 /* Curved Shapes */
 .container .curved-shape {
     position: absolute;
@@ -212,7 +211,6 @@ body {
     opacity: 0;
     transition: transform 0.7s ease, opacity 0.7s ease;
 }
-
 /* Form Box Animation */
 .form-box.Login .animation {
     transform: translateX(0%);
@@ -231,7 +229,6 @@ body {
     opacity: 1;
     transition-delay: 1.2s; /* Match with shape transition delay */
 }
-
 /* Heading Styles */
 .form-box h2 {
     font-size: 32px;
@@ -349,7 +346,6 @@ body {
 .regi-link a:hover {
     text-decoration: underline;
 }
-
 /* Info Content */
 .info-content {
     position: absolute;
@@ -414,10 +410,11 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
   }
   
-  
   .back-button i {
     margin-right: 5px;
     font-size: 25px;
+    height: fit-content;
+    margin-top: 5px;
   }
   
  .time-date {
@@ -427,6 +424,7 @@ body {
 
  .time-date p {
     margin: 0;
+    color: #EEEEEE !important;
  }
 
  .time-date #time {
@@ -444,7 +442,6 @@ body {
 #error-container {
     display: none; /* Hidden initially */
 }
-
   /* Back Button */
 .back-button {
     color: #EEEEEE; /* Default text color */
@@ -462,7 +459,7 @@ body {
   }
   
   .back-button:hover {
-    background-color: #EEEEEE; /* Background on hover */
+    background-color: #ffffff; /* Background on hover */
     color: #222831; /* Text color on hover */
     transform: scale(1.05); /* Slight scale up on hover */
   }
@@ -482,12 +479,10 @@ body {
     animation: fadeout 5s forwards; /* Disappears after 5 seconds */
 }
 
-
 @keyframes fadeout {
     0% { opacity: 1; }
     100% { opacity: 0; display: none; }
 }
-
 
 #error-message {
     color: #FF0000; /* Error message color */
@@ -504,20 +499,17 @@ body {
 
 .info-content img {
     width: 150%; /* Full width of the container */
-    height: 100%; /* Full height of the container */
+    height: auto; /* Full height of the container */
     object-fit: fill; /* Ensures the image covers the container without distortion */
     border-radius: 10px; /* Maintain rounded corners */
 }
-
 /* Remove .half-image class since it's redundant for the images here */
-
 .info-content.Login {
     right: 0;
     transform: translateX(0);
     opacity: 1;
     transition: transform 0.7s ease, opacity 0.7s ease;
 }
-
 /* Google login button */
 .google-login {
     text-align: center;
@@ -562,6 +554,77 @@ body {
     object-fit: fill; /* Ensures the image fits well */
     margin-left: 40px;
 }
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    /* Adjust container widths and paddings */
+    .container {
+        width: 90%;
+        padding: 10px;
+    }
 
+    /* Hide the image divs on small screens */
+    .info-content.Login,
+    .info-content.Register {
+        display: none;
+    }
 
+    .form-box.Register,
+    .form-box.Login {
+        width: 100%;
+    }
 
+    .form-box.Register {
+        padding: 0 40px;
+    }
+
+    .google-text {
+        font-size: small;
+    }
+
+    /* Make images and animations scale properly */
+    img, video, canvas {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Adjust text sizes for readability */
+    h1, h2, h3 {
+        font-size: smaller;
+    }
+
+    p {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    /* Flexbox adjustments */
+    .flex-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Ensure buttons are easy to tap */
+    button {
+        font-size: 16px;
+        padding: 10px 15px;
+    }
+
+    /* Adjust animations */
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    .animated-element {
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    /* Specific adjustments for your layout */
+    .sidebar {
+        display: none; /* Hide sidebar on small screens */
+    }
+
+    .main-content {
+        width: 100%;
+    }
+}

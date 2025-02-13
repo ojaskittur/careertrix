@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login/Sign up</title>
+  <title>CAREERTRIX</title>
+  <link rel="icon" type="image/png" href="{% static 'image/logo.png' %}" />
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="{% static 'styles/login.css' %}" />
+  <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
 </head>
 
 <body>
@@ -18,7 +22,8 @@
         <div class="card-image">
           <div class="top-bar">
             <a href="{% url 'landing' %}" class="back-button">
-              <i class="bx bx-left-arrow-alt"></i> HOME
+              <link rel="icon" type="image/png" href="{% static 'image/logo.png' %}" />
+              <i class="bx bx-left-arrow-alt"></i> <i class="fas fa-home"></i> 
             </a>
             <div class="time-date" style="color: #eeeeee">
               <p id="time"></p>
@@ -60,7 +65,7 @@
                 <div class="input-box google-login animation" style="--li: 22; --S: 6">
                   <button type="button" class="google-btn">
                     <img src="{% static 'image/google.png' %}" alt="Google" class="google-icon" />
-                    <a href="{% provider_login_url 'google' %}?process=login" style="text-decoration: none;">
+                    <a href="{% provider_login_url 'google' %}?process=login" class="google-text" style="text-decoration: none;">
                       Continue with Google
                   </a>                  
                   </button>
@@ -116,31 +121,31 @@
                 </div>
                 <div class="input-box animation" style="--li: 21; --S: 4">
                     <button class="btn" type="submit" id="registerSubmit">
-                        Register
+                      Register
                     </button>
                 </div>
                 <div class="regi-link animation" style="--li: 22; --S: 5">
                     <p>
                         Already have an account?
-                        <a class="SignInLink">Sign In</a>
+                        <a class="SignInLink">SignIn</a>
                     </p>
                 </div>
                 <div class="input-box google-login animation" style="--li: 22; --S: 6">
-                    <button type="button" class="google-btn">
-                        <img src="{% static 'image/google.png' %}" alt="Google" class="google-icon" />
-                        <a href="{% provider_login_url 'google' %}?next=/api/home/" style="text-decoration: none;">Continue With Google</a>
-                    </button>
-                    <div class="message-container" style="display: block; color: red;">
-                        {% if messages %}
-                        <ul class="messages">
-                            {% for message in messages %}
-                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
-                                {{ message }}
-                            </li>
-                            {% endfor %}
-                        </ul>
-                        {% endif %}
-                    </div>
+                  <button type="button" class="google-btn">
+                    <img src="{% static 'image/google.png' %}" alt="Google" class="google-icon" />
+                    <a href="{% provider_login_url 'google' %}?next=/api/home/" style="text-decoration: none;">Continue With Google</a>
+                </button>
+                <div class="message-container" style="display: block; color: red;">
+                  {% if messages %}
+                  <ul class="messages">
+                      {% for message in messages %}
+                      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                          {{ message }}
+                      </li>
+                      {% endfor %}
+                  </ul>
+                  {% endif %}
+              </div>
                 </div>
             </form>            
             </div>
