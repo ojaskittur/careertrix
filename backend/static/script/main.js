@@ -16,15 +16,15 @@ const setupMobileMenu = () => {
   dropdown.classList.add("profile-dropdown");
   
   dropdown.innerHTML = `
-    <a href="{% url 'profile' %}" style="margin-left:30px; margin-bottom:5px;" >
+    <a href="${profileUrl}" style="margin-left:30px; margin-bottom:5px;">
         <i class="fas fa-user"></i> Profile
-      </a>
-      <a href="{% url 'register' %}" style="margin-left:30px; margin-bottom:5px;" >
+    </a>
+    <a href="${registerUrl}" style="margin-left:30px; margin-bottom:5px;">
         <i class="fas fa-gear"></i> Register
-      </a>
-      <a href="{% url 'signout' %}" style="margin-left:30px; margin-bottom:5px;" class="logout-btn">
+    </a>
+    <a href="${signoutUrl}" style="margin-left:30px; margin-bottom:5px;" class="logout-btn">
         <i class="fas fa-sign-out-alt"></i> Logout
-      </a>
+    </a>
   `;
   
   profileUser.parentNode.insertBefore(dropdown, profileUser.nextSibling);

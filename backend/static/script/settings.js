@@ -70,13 +70,13 @@ document.addEventListener("DOMContentLoaded", function() {
     dropdown.classList.add("profile-dropdown");
     
     dropdown.innerHTML = `
-          <a href="{% url 'home' %}" style="margin-left:30px; margin-bottom:5px;" >
+          <a href="${urls.home}" style="margin-left:30px; margin-bottom:5px;" >
         <i class="fas fa-home"></i> Home
       </a>
-      <a href="{% url 'register' %}" style="margin-left:30px; margin-bottom:5px;" >
+      <a href="${urls.register}" style="margin-left:30px; margin-bottom:5px;" >
         <i class="fas fa-gear"></i> Register
       </a>
-      <a href="{% url 'signout' %}" style="margin-left:30px; margin-bottom:5px;" class="logout-btn">
+      <a href="${urls.signout}" style="margin-left:30px; margin-bottom:5px;" class="logout-btn">
         <i class="fas fa-sign-out-alt"></i> Logout
       </a>
     `;

@@ -109,6 +109,11 @@
     </div>
       <script src="https://cdn.botpress.cloud/webchat/v2.1/inject.js"></script>
       <script src="https://mediafiles.botpress.cloud/3177457b-276e-453f-abbe-3fe6165f9843/webchat/v2.1/config.js"></script>
+      <script>
+        const profileUrl = "{% url 'setting' %}";
+        const registerUrl = "{% url 'registration' %}";
+        const signoutUrl = "{% url 'signout' %}";
+      </script>      
       <script src="{% static 'script/main.js' %}"></script>
   </body>
 </html>

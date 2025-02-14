@@ -203,18 +203,18 @@ interactables.forEach(item => {
   
   // Create dropdown menu
   const dropdown = document.createElement('div');
-  dropdown.className = 'profile-dropdown';
-  dropdown.innerHTML = `
-    <a href="{% url 'home' %}" style="margin-left:30px; margin-bottom:5px;" >
-        <i class="fas fa-home"></i> Home
-      </a>
-      <a href="{% url 'profile' %}" style="margin-left:30px; margin-bottom:5px;" >
-        <i class="fas fa-user"></i> Profile
-      </a>
-      <a href="{% url 'signout' %}" style="margin-left:30px; margin-bottom:5px;" class="logout-btn">
-        <i class="fas fa-sign-out-alt"></i> Logout
-      </a>
-  `;
+dropdown.className = 'profile-dropdown';
+dropdown.innerHTML = `
+  <a href="${urls.home}" style="margin-left:30px; margin-bottom:5px;">
+      <i class="fas fa-home"></i> Home
+  </a>
+  <a href="${urls.profile}" style="margin-left:30px; margin-bottom:5px;">
+      <i class="fas fa-user"></i> Profile
+  </a>
+  <a href="${urls.signout}" style="margin-left:30px; margin-bottom:5px;" class="logout-btn">
+      <i class="fas fa-sign-out-alt"></i> Logout
+  </a>
+`;
   
   // Create profile menu container
   const profileMenu = document.createElement('div');
