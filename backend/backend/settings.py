@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-&u4fxl_fh!=!o()22%@f_nh=k6j(w+f573t^1pgc+7+tjwfkfp
 SECRET_KEY = 'django-insecure-q)!eyxq6-5+3+!5&^yg+#)&v4%ix2jqjw+76gds^6&va)7446m'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = ['*']  # Or add specific allowed hosts
 SOCIALACCOUNT_LOGIN_ON_GET = True
 SITE_ID = 4
@@ -69,9 +69,6 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
-
-print("GOOGLE_CLIENT_ID:", os.getenv("CLIENT_ID"))
-print("GOOGLE_SECRET:", os.getenv("SECRET"))
 
 
 MIDDLEWARE = [
@@ -116,13 +113,14 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'careertrix',
-        'USER': 'vishnu',
-        'PASSWORD': 'vishnu',
-        'HOST': 'localhost',
-        'PORT': '',
+        'NAME': os.getenv('DATABASE_NAME'),
+        'USER': os.getenv('DATABASE_USER'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+        'HOST': os.getenv('DATABASE_HOST'),
+        'PORT': os.getenv('DATABASE_PORT', ''),
     }
 }
+
 
 
 # Password validation
