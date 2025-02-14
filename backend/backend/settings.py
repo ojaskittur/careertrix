@@ -111,7 +111,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -121,6 +121,11 @@ DATABASES = {
         'HOST': os.getenv('DATABASE_HOST'),
         'PORT': os.getenv('DATABASE_PORT', ''),
     }
+}
+'''
+import dj_database_url
+DATABASES= {
+    'default':dj_database_url.parse(os.getenv('DATABASE_URL'))
 }
 
 
@@ -213,3 +218,4 @@ STORAGES = {
         "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
     },
 }
+
