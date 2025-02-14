@@ -175,9 +175,14 @@ AUTHENTICATION_BACKENDS = (
     "allauth.account.auth_backends.AuthenticationBackend"
 )
 
+ACCOUNT_ADAPTER = "api.adapter.MyAccountAdapter"
+
 LOGIN_URL = '/api/login/'
 LOGIN_REDIRECT_URL = '/api/home/'
 LOGOUT_REDIRECT_URL = '/api/login/' 
+ACCOUNT_SIGNUP_REDIRECT_URL = "/api/registration/"  
+ACCOUNT_LOGIN_REDIRECT_URL = "/api/home/"  
+
 
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
