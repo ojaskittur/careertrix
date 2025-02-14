@@ -61,12 +61,14 @@ SOCIALACCOUNT_PROVIDERS = {
             "profile",
             "email"
         ],
+        "SCOPE": ["profile", "email"],
         "AUTH_PARAMS": {"access_type": "online"},
         "APP": {
             "client_id": os.getenv("GOOGLE_CLIENT_ID", ""),
             "secret": os.getenv("GOOGLE_SECRET", ""),
             "key": os.getenv("GOOGLE_KEY", ""),
-        }
+        },
+        "OAUTH_PKCE_ENABLED": True,
     }
 }
 
@@ -175,7 +177,13 @@ AUTHENTICATION_BACKENDS = (
     "allauth.account.auth_backends.AuthenticationBackend"
 )
 
-ACCOUNT_ADAPTER = "api.adapter.MyAccountAdapter"
+ACCOUNT_ADAPTER = "allauth.account.adapter.DefaultAccountAdapter"
+SOCIALACCOUNT_ADAPTER = "api.adapter.MySocialAccountAdapter"
+SOCIALACCOUNT_AUTO_SIGNUP = True 
+SOCIALACCOUNT_EMAIL_VERIFICATION = "none"  
+SOCIALACCOUNT_EMAIL_REQUIRED = True  
+ACCOUNT_USERNAME_REQUIRED = False 
+ACCOUNT_AUTHENTICATION_METHOD = "email"
 
 LOGIN_URL = '/api/login/'
 LOGIN_REDIRECT_URL = '/api/home/'
