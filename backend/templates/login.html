@@ -133,7 +133,7 @@
                 <div class="input-box google-login animation" style="--li: 22; --S: 6">
                   <button type="button" class="google-btn">
                     <img src="{% static 'image/google.png' %}" alt="Google" class="google-icon" />
-                    <a href="{% provider_login_url 'google' %}?next=/api/home/" style="text-decoration: none;">Continue With Google</a>
+                    <a href="{% provider_login_url 'google' %}?next=/v1/home/" style="text-decoration: none;">Continue With Google</a>
                 </button>
                 <div class="message-container" style="display: block; color: red;">
                   {% if messages %}

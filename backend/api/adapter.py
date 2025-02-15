@@ -25,5 +25,5 @@ class MyAccountAdapter(DefaultAccountAdapter):
     def get_login_redirect_url(self, request):
         user = request.user
         if user.is_authenticated and user.date_joined == user.last_login:
-            return resolve_url("/api/registration/")
-        return resolve_url("/api/home/")
+            return resolve_url("/v1/registration/")
+        return resolve_url("/v1/home/")
