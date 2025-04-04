@@ -120,7 +120,7 @@ def registration(request):
             resume_file = request.FILES.get('resume-upload')
             if resume_file:
                 if(resume_file.content_type!="application/pdf"):
-                    messages.error(request, 'Please upload only resume in pdf form')
+                    messages.error(request, 'Please upload resume only in pdf form')
                     return render(request, 'register.html')
                 career_goal.resume = resume_file
                 resume_text = extract_text_from_resume(resume_file)
