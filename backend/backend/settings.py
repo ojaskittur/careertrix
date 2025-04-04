@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-q)!eyxq6-5+3+!5&^yg+#)&v4%ix2jqjw+76gds^6&va)7446m
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-ALLOWED_HOSTS = ["careertrix.onrender.com", "localhost"]
+ALLOWED_HOSTS = [".vercel.app"]
   # Or add specific allowed hosts
 SOCIALACCOUNT_LOGIN_ON_GET = True
 SITE_ID = 4
