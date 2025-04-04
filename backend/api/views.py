@@ -16,9 +16,6 @@ def landing(request):
         return redirect('home')
     return render(request, 'landing.html')
 
-
-
-
 def signin(request):
     if request.user.is_authenticated:
         return redirect('home')
@@ -122,6 +119,9 @@ def registration(request):
         if check == 'resume':
             resume_file = request.FILES.get('resume-upload')
             if resume_file:
+                if(resume_file.content_type!="application/pdf"):
+                    messages.error(request, 'Please upload only resume in pdf form')
+                    return render(request, 'register.html')
                 career_goal.resume = resume_file
                 resume_text = extract_text_from_resume(resume_file)
                 extracted_skills = extract_skills_from_text(resume_text)
